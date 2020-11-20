@@ -7,10 +7,10 @@ namespace MarketManagmentSystem.infrastructure.Models
 {
     public class Product
     {
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public ProductCategoryName Category { get; set; }
-        public int Quantity { get; set; }
+        public string ProductName { get; set; }
+        public double ProductPrice { get; set; }
+        public ProductCategoryName ProductCategory { get; set; }
+        public int ProductQuantity { get; set; }
         public string ProductCode { get; set; }
     }
 }

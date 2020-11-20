@@ -7,8 +7,8 @@ namespace MarketManagmentSystem.infrastructure.Models
     public class Sale
     {
         public int SaleNumber { get; set; }
-        public double Amount { get; set; }
+        public double SaleAmount { get; set; }
         public List<SaleItem> SaleItem { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime SaleDate { get; set; }
     }
 }
