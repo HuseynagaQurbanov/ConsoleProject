@@ -12,17 +12,14 @@ namespace MarketManagmentSystem.infrastructure.Interface
         List<Product> Products { get; }
 
         void AddSale(string productCode);
-        void GetProductBySale(string productCode, int count);
-        void RemoveSale(int saleNumber);
+        void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity);
         List<Sale> GetSales();
         List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate);
         List<Sale> GetSalesByAmountRange(double startAmount, double endAmount);
-        void GetSaleByDate(DateTime Date);
+        List<Sale> GetSaleByDate(DateTime Date);
         void GetSaleBySaleNumber(double saleNumber);
         void AddProduct(Product product);
         void EditProduct(string productCode);
-        void RemoveProduct(string productCode);
-        List<Product> GetProducts();
         List<Product> GetProductsByCategoryName(ProductCategoryType productCategory);
         List<Product> GetProductsByAmountRange(double startAmount, double endAmount);
         List<Product> GetProductsByProductName(string productName);
