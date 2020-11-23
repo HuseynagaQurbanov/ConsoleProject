@@ -2,7 +2,7 @@
 
 namespace MarketManagmentSystem.infrastructure.Enums
 {
-    public enum ProductCategoryName
+    public enum ProductCategoryType
     {
 
     }
