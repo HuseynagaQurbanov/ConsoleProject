@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MarketManagmentSystem.infrastructure.Models;
+using MarketManagmentSystem.infrastructure.Services;
+using System;
 using System.Text;
 
 namespace MarketManagmentSystem
 {
     class Program
     {
+        private static readonly MarketableService _marketableService = new MarketableService();
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -84,7 +87,8 @@ namespace MarketManagmentSystem
                 switch (selectInt1)
                 {
                     case 1:
-                        continue;
+                        ShowAddProduct();
+                        break;
                     case 2:
                         continue;
                     case 3:
@@ -165,6 +169,16 @@ namespace MarketManagmentSystem
                 #endregion
 
             } while (selectInt2 != 0) ;
+        }
+
+        static void ShowAddProduct()
+        {
+            Console.WriteLine("-------------- Yeni Məhsul əlavə et --------------");
+            Product product = new Product();
+
+            Console.WriteLine("Kateqoriya daxil edin :");
+            product.ProductName = Console.ReadLine();
+
         }
     }
 }

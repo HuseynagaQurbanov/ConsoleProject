@@ -11,7 +11,7 @@ namespace MarketManagmentSystem.infrastructure.Interface
         List<Sale> Sales { get; }
         List<Product> Products { get; }
 
-        void AddSale(string productCode);
+        void AddSale(Sale sale);
         void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity);
         List<Sale> GetSales();
         List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate);

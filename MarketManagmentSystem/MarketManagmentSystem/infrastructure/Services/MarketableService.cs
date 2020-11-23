@@ -9,13 +9,15 @@ namespace MarketManagmentSystem.infrastructure.Services
 {
     public class MarketableService : IMarketable
     {
-        public List<Sale> Sales => throw new NotImplementedException();
+        private readonly List<Sale> _sales;
+        public List<Sale> Sales => _sales;
 
-        public List<Product> Products => throw new NotImplementedException();
+        private readonly List<Product> _products;
+        public List<Product> Products => _products;
 
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _products.Add(product);
         }
 
         public void AddSale(string productCode)
@@ -74,6 +76,11 @@ namespace MarketManagmentSystem.infrastructure.Services
         }
 
         List<Sale> IMarketable.GetSaleByDate(DateTime Date)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddSale(Sale sale)
         {
             throw new NotImplementedException();
         }
