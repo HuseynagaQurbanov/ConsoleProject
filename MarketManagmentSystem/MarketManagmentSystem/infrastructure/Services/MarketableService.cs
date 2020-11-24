@@ -19,13 +19,13 @@ namespace MarketManagmentSystem.infrastructure.Services
         {
             _products = new List<Product>();
 
-            _products.Add(new Product
-            {
-                ProductName = "8K HDR 75 Smart TV Samsung QE75Q900RBUXRU",
-                ProductPrice = 1000,
-                ProductQuantity = 2,
-                ProductCode = "asjdh423jksdjk"
-            });
+            //_products.Add(new Product
+            //{
+            //    ProductName = "8K HDR 75 Smart TV Samsung QE75Q900RBUXRU",
+            //    ProductPrice = 1000,
+            //    ProductQuantity = 2,
+            //    ProductCode = "asjdh423jksdjk"
+            //});
         }
 
         public void AddProduct(Product product)

@@ -232,8 +232,6 @@ namespace MarketManagmentSystem
                 }
                 #endregion
 
-                
-                
             } while (selectInt != 0);
 
             #endregion
@@ -285,12 +283,10 @@ namespace MarketManagmentSystem
             product.ProductCode = Console.ReadLine();
             #endregion
 
-            if(product == null)
+            if(product != null)
             {
                 _marketableService.AddProduct(product);
             }
-
-            _marketableService.AddProduct(product);
 
             Console.WriteLine("");
             Console.WriteLine("-------------- Yeni satış əlavə edildi --------------");
@@ -311,6 +307,9 @@ namespace MarketManagmentSystem
 
             table.Write();
         }
+
+
+
         #endregion
     }
 }
