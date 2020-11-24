@@ -1,4 +1,6 @@
-﻿using MarketManagmentSystem.infrastructure.Models;
+﻿using ConsoleTables;
+using MarketManagmentSystem.infrastructure.Enums;
+using MarketManagmentSystem.infrastructure.Models;
 using MarketManagmentSystem.infrastructure.Services;
 using System;
 using System.Text;
@@ -23,12 +25,14 @@ namespace MarketManagmentSystem
                 #endregion
 
                 #region First Menu Selection
+                Console.WriteLine("");
                 Console.Write("Seçiminizi edin : ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
                 {
-                    Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                    Console.WriteLine("");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
                     select = Console.ReadLine();
                 }
                 #endregion
@@ -55,12 +59,15 @@ namespace MarketManagmentSystem
             } while (selectInt != 0);
 
         }
+
+        #region Show Methods
         static void ShowProductMenu()
         {
-            int selectInt1;
+            int selectInt;
             do
             {
                 #region Second Menu
+                Console.WriteLine("");
                 Console.WriteLine("================================================");
                 Console.WriteLine("1. Yeni məhsul əlavə etmək");
                 Console.WriteLine("2. Məhsul üzərində düzəliş etmək");
@@ -72,19 +79,20 @@ namespace MarketManagmentSystem
                 #endregion
 
                 #region Second Menu Selection
+                Console.WriteLine("");
                 Console.Write("Seçiminizi edin : ");
                 string select = Console.ReadLine();
 
-                while (!int.TryParse(select, out selectInt1))
+                while (!int.TryParse(select, out selectInt))
                 {
-                    Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
                     select = Console.ReadLine();
                 }
 
                 #endregion
 
                 #region Second Menu Switch
-                switch (selectInt1)
+                switch (selectInt)
                 {
                     case 1:
                         ShowAddProduct();
@@ -94,7 +102,8 @@ namespace MarketManagmentSystem
                     case 3:
                         continue;
                     case 4:
-                        continue;
+                        ShowProductList();
+                        break;
                     case 5:
                         continue;
                     case 6:
@@ -110,15 +119,16 @@ namespace MarketManagmentSystem
 
                 #endregion
 
-            } while (selectInt1 != 0);
+            } while (selectInt != 0);
         }
 
         static void ShowSalesMenu()
         {
-            int selectInt2;
+            int selectInt;
             do
             {
                 #region Third Menu
+                Console.WriteLine("");
                 Console.WriteLine("================================================");
                 Console.WriteLine("1. Yeni satış əlavə etmək");
                 Console.WriteLine("2. Satışdakı məhsulu geri qaytarmaq");
@@ -134,7 +144,7 @@ namespace MarketManagmentSystem
                 Console.Write("Seçiminizi edin : ");
                 string select = Console.ReadLine();
 
-                while (!int.TryParse(select, out selectInt2))
+                while (!int.TryParse(select, out selectInt))
                 {
                     Console.WriteLine("Rəqəm daxil etməlisiniz!");
                     select = Console.ReadLine();
@@ -142,7 +152,7 @@ namespace MarketManagmentSystem
                 #endregion
 
                 #region Third Menu Switch
-                switch (selectInt2)
+                switch (selectInt)
                 {
                     case 1:
                         continue;
@@ -168,17 +178,139 @@ namespace MarketManagmentSystem
                 }
                 #endregion
 
-            } while (selectInt2 != 0) ;
+            } while (selectInt != 0) ;
         }
 
         static void ShowAddProduct()
         {
+            Console.WriteLine("");
             Console.WriteLine("-------------- Yeni Məhsul əlavə et --------------");
             Product product = new Product();
 
-            Console.WriteLine("Kateqoriya daxil edin :");
-            product.ProductName = Console.ReadLine();
+            #region Product Catagory Name
 
+            int selectInt;
+            do
+            {
+                #region Product Category Menu 
+                Console.WriteLine("Kateqoriya daxil edin:");
+                Console.WriteLine("1. Televizorlar");
+                Console.WriteLine("2. Ayaqqabilar");
+                Console.WriteLine("3. Soyuducular");
+                #endregion
+
+                #region Product Category Selection
+                Console.WriteLine("");
+                Console.Write("Seçiminizi edin : ");
+                string select = Console.ReadLine();
+
+                while (!int.TryParse(select, out selectInt))
+                {
+                    Console.WriteLine("");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
+                    select = Console.ReadLine();
+                }
+                #endregion
+
+                #region Product Category Switch
+                switch (selectInt)
+                {
+                    case 1:
+                        product.ProductCategory = ProductCategoryType.Televizorlar;
+                        break;
+                    case 2:
+                        product.ProductCategory = ProductCategoryType.Soyuducular;
+                        break;
+                    case 3:
+                        product.ProductCategory = ProductCategoryType.Ayaqqabilar;
+                        break;
+                    default:
+                        Console.WriteLine("--------------------------------");
+                        Console.WriteLine("Siz yalnış seçim etdiniz,1-3 aralığında seçim etməlisiniz");
+                        Console.WriteLine("--------------------------------");
+                        break;
+                }
+                #endregion
+
+                
+                
+            } while (selectInt != 0);
+
+            #endregion
+
+            #region Product Name
+
+            Console.Write("Məhsul adı daxil edin :");
+            product.ProductName = Console.ReadLine();
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Product Price
+
+            Console.Write("Məhsulun qiymətini daxil edin :");
+            string productPriceInput = Console.ReadLine();
+            double productPrice;
+
+            while (!double.TryParse(productPriceInput, out productPrice))
+            {
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                productPriceInput = Console.ReadLine();
+            }
+
+            product.ProductPrice = productPrice;
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Product Quantity
+
+            Console.Write("Məhsulun sayını daxil edin :");
+            string productQuantityInput = Console.ReadLine();
+            int productQuantity;
+
+            while (!int.TryParse(productQuantityInput, out productQuantity))
+            {
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                productQuantityInput = Console.ReadLine();
+            }
+
+            product.ProductQuantity = productQuantity;
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Product Code
+            Console.Write("Məhsulun kodunu daxil edin :");
+            product.ProductCode = Console.ReadLine();
+            #endregion
+
+            if(product == null)
+            {
+                _marketableService.AddProduct(product);
+            }
+
+            _marketableService.AddProduct(product);
+
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Yeni satış əlavə edildi --------------");
         }
+
+        static void ShowProductList()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Mövcud Məhsullar --------------");
+
+            var table = new ConsoleTable("No", "Kateqoriya", "Məhsul", "Sayı", "Qiyməti"  , "Mehsul Kodu");
+            int i = 1;
+            foreach (var item in _marketableService.Products)
+            {
+                table.AddRow(i, item.ProductCategory, item.ProductName, item.ProductQuantity, item.ProductPrice, item.ProductCode);
+                i++;
+            }
+
+            table.Write();
+        }
+        #endregion
     }
 }
