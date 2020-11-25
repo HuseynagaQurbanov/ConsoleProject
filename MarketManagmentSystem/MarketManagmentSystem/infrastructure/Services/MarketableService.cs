@@ -55,17 +55,17 @@ namespace MarketManagmentSystem.infrastructure.Services
 
         public List<Product> GetProductsByAmountRange(double startAmount, double endAmount)
         {
-            throw new NotImplementedException();
+            return _products.Where(p => p.ProductPrice >= startAmount && p.ProductPrice <= endAmount).ToList();
         }
 
         public List<Product> GetProductsByCategoryName(ProductCategoryType productCategory)
         {
-            throw new NotImplementedException();
+            return _products.FindAll(p => p.ProductCategory == productCategory).ToList();
         }
 
         public List<Product> GetProductsByProductName(string productName)
         {
-            throw new NotImplementedException();
+            return _products.FindAll(p => p.ProductName == productName);
         }
 
         public void GetSaleByDate(DateTime Date)

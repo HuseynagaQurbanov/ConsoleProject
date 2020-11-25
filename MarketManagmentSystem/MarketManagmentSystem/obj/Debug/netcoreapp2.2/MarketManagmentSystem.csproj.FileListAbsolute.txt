@@ -9,3 +9,15 @@ C:\Users\huseynyg\Desktop\My-Project\MarketManagmentSystem\MarketManagmentSystem
 C:\Users\huseynyg\Desktop\My-Project\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
 C:\Users\huseynyg\Desktop\My-Project\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.dll
 C:\Users\huseynyg\Desktop\My-Project\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.deps.json
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.runtimeconfig.json
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.runtimeconfig.dev.json
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.dll
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.csprojAssemblyReference.cache
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.AssemblyInfoInputs.cache
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.AssemblyInfo.cs
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.csproj.CoreCompileInputs.cache
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.dll
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
+C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.genruntimeconfig.cache

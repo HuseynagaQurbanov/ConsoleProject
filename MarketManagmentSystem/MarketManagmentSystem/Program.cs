@@ -110,11 +110,14 @@ namespace MarketManagmentSystem
                         ShowProductList();
                         break;
                     case 5:
-                        continue;
+                        //ShowGetProductsByCategoryName();
+                        break;
                     case 6:
-                        continue;
+                        ShowGetProductsByAmountRange();
+                        break;
                     case 7:
-                        continue;
+                        ShowGetProductsByProductName();
+                        break;
                     default:
                         Console.WriteLine("");
                         Console.WriteLine("--------------------------------");
@@ -423,6 +426,123 @@ namespace MarketManagmentSystem
 
             string code = Console.ReadLine();
             _marketableService.RemoveProduct(code);
+        }
+
+        static void ShowGetProductsByCategoryName()
+        {
+            //Product product = new Product();
+
+            //string code = Console.ReadLine();
+            //List<Product> products = _marketableService.GetProductsByCategoryName();
+
+            //int selectInt;
+            //do
+            //{
+            //    #region Product Category Menu 
+            //    Console.WriteLine("Məhsulun yeni kateqoriyasını daxil edin: ");
+            //    Console.WriteLine("0. Televizorlar");
+            //    Console.WriteLine("1. Telefonlar");
+            //    Console.WriteLine("2. Soyuducular");
+            //    Console.WriteLine("3. Kompyuterlər");
+            //    #endregion
+
+            //    #region Product Category Selection
+            //    Console.WriteLine("");
+            //    Console.Write("Seçiminizi edin : ");
+            //    string select = Console.ReadLine();
+
+            //    while (!int.TryParse(select, out selectInt))
+            //    {
+            //        Console.WriteLine("");
+            //        Console.Write("Rəqəm daxil etməlisiniz!: ");
+            //        select = Console.ReadLine();
+            //    }
+            //    #endregion
+
+            //    #region Product Category Switch
+            //    switch (selectInt)
+            //    {
+            //        case 0:
+            //            product.ProductCategory = ProductCategoryType.TV;
+            //            break;
+            //        case 1:
+            //            product.ProductCategory = ProductCategoryType.Phone;
+            //            break;
+            //        case 2:
+            //            product.ProductCategory = ProductCategoryType.Refrigerator;
+            //            break;
+            //        case 3:
+            //            product.ProductCategory = ProductCategoryType.Computer;
+            //            break;
+            //        default:
+            //            Console.WriteLine("--------------------------------");
+            //            Console.WriteLine("Siz yalnış seçim etdiniz,0-3 aralığında seçim etməlisiniz");
+            //            Console.WriteLine("--------------------------------");
+            //            break;
+            //    }
+            //    #endregion
+
+            //} while (selectInt == -1);
+
+        }
+
+        static void ShowGetProductsByAmountRange()
+        {
+            Console.WriteLine("-------------- Qiymət aralığında satışların Gostərilməsi --------------");
+
+            #region Start Amount
+            Console.Write("Başlanğıc Qiyməti daxil edin:");
+            string startAmountInput = Console.ReadLine();
+            double startAmount;
+
+            while (!double.TryParse(startAmountInput, out startAmount))
+            {
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                startAmountInput = Console.ReadLine();
+            }
+            #endregion
+
+            #region End Amount
+            Console.Write("Bitiş qiyməti daxil edin:");
+            string endAmountInput = Console.ReadLine();
+            double endAmount;
+
+            while (!double.TryParse(endAmountInput, out endAmount))
+            {
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                endAmountInput = Console.ReadLine();
+            }
+            #endregion
+
+            List<Product> result = _marketableService.GetProductsByAmountRange(startAmount, endAmount);
+
+            foreach (var item in result)
+            {
+                if(result != null)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
+                }
+            }
+        }
+
+        static void ShowGetProductsByProductName()
+        {
+            Console.WriteLine("-------------- Adına görə məhsulun göstərilməsi --------------");
+
+            Console.WriteLine("");
+            Console.Write("Məhsulun adını daxil edin: ");
+            string productName = Console.ReadLine();
+
+            List<Product> products = _marketableService.GetProductsByProductName(productName);
+            foreach (var item in products)
+            {
+                if (products != null)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
+                }
+            }
         }
         #endregion
     }
