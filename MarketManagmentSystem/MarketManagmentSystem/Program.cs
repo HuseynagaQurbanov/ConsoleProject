@@ -110,7 +110,7 @@ namespace MarketManagmentSystem
                         ShowProductList();
                         break;
                     case 5:
-                        //ShowGetProductsByCategoryName();
+                        ShowGetProductsByCategoryName();
                         break;
                     case 6:
                         ShowGetProductsByAmountRange();
@@ -430,59 +430,67 @@ namespace MarketManagmentSystem
 
         static void ShowGetProductsByCategoryName()
         {
-            //Product product = new Product();
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Kateqoriyasına görə məhsulu göstərmək --------------");
 
-            //string code = Console.ReadLine();
-            //List<Product> products = _marketableService.GetProductsByCategoryName();
+            Product product = new Product();
 
-            //int selectInt;
-            //do
+            int selectInt;
+            do
+            {
+                #region Product Category Menu 
+                Console.WriteLine("Məhsulun kateqoriyasını daxil edin ");
+                Console.WriteLine("0. Televizorlar");
+                Console.WriteLine("1. Telefonlar");
+                Console.WriteLine("2. Soyuducular");
+                Console.WriteLine("3. Kompyuterlər");
+                #endregion
+
+                #region Product Category Selection
+                Console.WriteLine("");
+                Console.Write("Seçiminizi edin : ");
+                string select = Console.ReadLine();
+                Console.WriteLine("");
+
+                while (!int.TryParse(select, out selectInt))
+                {
+                    Console.WriteLine("");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
+                    select = Console.ReadLine();
+                }
+                #endregion
+
+                #region Product Category Switch
+                switch (selectInt)
+                {
+                    case 0:
+                        product.ProductCategory = ProductCategoryType.TV;
+                        break;
+                    case 1:
+                        product.ProductCategory = ProductCategoryType.Phone;
+                        break;
+                    case 2:
+                        product.ProductCategory = ProductCategoryType.Refrigerator;
+                        break;
+                    case 3:
+                        product.ProductCategory = ProductCategoryType.Computer;
+                        break;
+                    default:
+                        Console.WriteLine("--------------------------------");
+                        Console.WriteLine("Siz yalnış seçim etdiniz,0-3 aralığında seçim etməlisiniz");
+                        Console.WriteLine("--------------------------------");
+                        break;
+                }
+                #endregion
+
+            } while (selectInt == -1);
+
+            //if(selectInt )
             //{
-            //    #region Product Category Menu 
-            //    Console.WriteLine("Məhsulun yeni kateqoriyasını daxil edin: ");
-            //    Console.WriteLine("0. Televizorlar");
-            //    Console.WriteLine("1. Telefonlar");
-            //    Console.WriteLine("2. Soyuducular");
-            //    Console.WriteLine("3. Kompyuterlər");
-            //    #endregion
+            //    Console.WriteLine("Bu kateqoriyada mehsul yoxdur");
+            //}
 
-            //    #region Product Category Selection
-            //    Console.WriteLine("");
-            //    Console.Write("Seçiminizi edin : ");
-            //    string select = Console.ReadLine();
-
-            //    while (!int.TryParse(select, out selectInt))
-            //    {
-            //        Console.WriteLine("");
-            //        Console.Write("Rəqəm daxil etməlisiniz!: ");
-            //        select = Console.ReadLine();
-            //    }
-            //    #endregion
-
-            //    #region Product Category Switch
-            //    switch (selectInt)
-            //    {
-            //        case 0:
-            //            product.ProductCategory = ProductCategoryType.TV;
-            //            break;
-            //        case 1:
-            //            product.ProductCategory = ProductCategoryType.Phone;
-            //            break;
-            //        case 2:
-            //            product.ProductCategory = ProductCategoryType.Refrigerator;
-            //            break;
-            //        case 3:
-            //            product.ProductCategory = ProductCategoryType.Computer;
-            //            break;
-            //        default:
-            //            Console.WriteLine("--------------------------------");
-            //            Console.WriteLine("Siz yalnış seçim etdiniz,0-3 aralığında seçim etməlisiniz");
-            //            Console.WriteLine("--------------------------------");
-            //            break;
-            //    }
-            //    #endregion
-
-            //} while (selectInt == -1);
+            _marketableService.GetProductsByCategoryName((ProductCategoryType)selectInt);
 
         }
 

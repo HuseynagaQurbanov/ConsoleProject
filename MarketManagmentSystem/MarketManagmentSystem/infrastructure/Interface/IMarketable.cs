@@ -20,7 +20,7 @@ namespace MarketManagmentSystem.infrastructure.Interface
         void GetSaleBySaleNumber(double saleNumber);
         void AddProduct(Product product);
         List<Product> EditProduct(string productCode);
-        List<Product> GetProductsByCategoryName(ProductCategoryType productCategory);
+        void GetProductsByCategoryName(ProductCategoryType productCategory);
         List<Product> GetProductsByAmountRange(double startAmount, double endAmount);
         List<Product> GetProductsByProductName(string productName);
         void RemoveProduct(string productCode);

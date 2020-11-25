@@ -36,6 +36,14 @@ namespace MarketManagmentSystem.infrastructure.Services
                 ProductQuantity = 5,
                 ProductCode = "IN000021939"
             });
+            _products.Add(new Product
+            {
+                ProductCategory = ProductCategoryType.Refrigerator,
+                ProductName = "Gorenje NRK6192KW",
+                ProductPrice = 789,
+                ProductQuantity = 7,
+                ProductCode = "IN000015880"
+            });
         }
 
         public void AddProduct(Product product)
@@ -58,9 +66,14 @@ namespace MarketManagmentSystem.infrastructure.Services
             return _products.Where(p => p.ProductPrice >= startAmount && p.ProductPrice <= endAmount).ToList();
         }
 
-        public List<Product> GetProductsByCategoryName(ProductCategoryType productCategory)
+        public void GetProductsByCategoryName(ProductCategoryType productCategory)
         {
-            return _products.FindAll(p => p.ProductCategory == productCategory).ToList();
+            List<Product> list = _products.FindAll(p => p.ProductCategory == productCategory).ToList();
+
+            foreach (var item in list)
+            {
+                Console.WriteLine("{0},{1},{2}",item.ProductCode,item.ProductName,item.ProductPrice);
+            }
         }
 
         public List<Product> GetProductsByProductName(string productName)
