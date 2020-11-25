@@ -51,11 +51,6 @@ namespace MarketManagmentSystem.infrastructure.Services
             _products.Add(product);
         }
 
-        public void AddSale(string productCode)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Product> EditProduct(string productCode)
         {
             return _products.FindAll(p => p.ProductCode == productCode).ToList();
@@ -79,6 +74,18 @@ namespace MarketManagmentSystem.infrastructure.Services
         public List<Product> GetProductsByProductName(string productName)
         {
             return _products.FindAll(p => p.ProductName == productName);
+        }
+
+        public void RemoveProduct(string productCode)
+        {
+            var resultlist = _products.ToList();
+            var itemToRemove = resultlist.Single(r => r.ProductCode == productCode);
+            _products.Remove(itemToRemove);
+        }
+
+        public void AddSale(string productCode)
+        {
+            throw new NotImplementedException();
         }
 
         public void GetSaleByDate(DateTime Date)
@@ -121,11 +128,6 @@ namespace MarketManagmentSystem.infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public void RemoveProduct(string productCode)
-        {
-            var resultlist = _products.ToList();
-            var itemToRemove = resultlist.Single(r => r.ProductCode == productCode);
-            _products.Remove(itemToRemove);
-        }
+        
     }
 }

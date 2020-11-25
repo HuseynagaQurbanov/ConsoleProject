@@ -52,7 +52,7 @@ namespace MarketManagmentSystem
                     default:
                         Console.WriteLine("");
                         Console.WriteLine("--------------------------------");
-                        Console.WriteLine("Siz yalnış seçim etdiniz,0-2 aralığında seçim etməlisiniz");
+                        Console.WriteLine("Siz yalnış seçim etdiniz,0-3 aralığında seçim etməlisiniz");
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("");
                         break;
@@ -164,7 +164,8 @@ namespace MarketManagmentSystem
                 switch (selectInt)
                 {
                     case 1:
-                        continue;
+                        ShowAddSale();
+                        break;
                     case 2:
                         continue;
                     case 3:
@@ -189,7 +190,9 @@ namespace MarketManagmentSystem
 
             } while (selectInt != 0) ;
         }
+        #endregion
 
+        #region Product Show Methods
         static void ShowAddProduct()
         {
             Console.WriteLine("");
@@ -240,6 +243,7 @@ namespace MarketManagmentSystem
                     default:
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
+                        ShowAddProduct();
                         Console.WriteLine("--------------------------------");
                         break;
                 }
@@ -485,10 +489,7 @@ namespace MarketManagmentSystem
 
             } while (selectInt == -1);
 
-            //if(selectInt )
-            //{
-            //    Console.WriteLine("Bu kateqoriyada mehsul yoxdur");
-            //}
+            
 
             _marketableService.GetProductsByCategoryName((ProductCategoryType)selectInt);
 
@@ -551,6 +552,68 @@ namespace MarketManagmentSystem
                     Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
                 }
             }
+        }
+        #endregion
+
+        #region Sale Methods
+        static void ShowAddSale()
+        {
+            Sale sale = new Sale();
+
+            #region Sale Number
+            Console.WriteLine("");
+            Console.Write("Məhsulun nömrəsini daxil edin :");
+            string saleNumberInput = Console.ReadLine();
+            int saleNumber;
+
+            while (!int.TryParse(saleNumberInput, out saleNumber))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                saleNumberInput = Console.ReadLine();
+            }
+
+            sale.SaleNumber = saleNumber;
+            #endregion
+
+            #region Sale Amount
+            Console.WriteLine("");
+            Console.Write("Məhsulun qiymətini daxil edin :");
+            string saleAmountInput = Console.ReadLine();
+            int saleAmount;
+
+            while (!int.TryParse(saleAmountInput, out saleAmount))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                saleAmountInput = Console.ReadLine();
+            }
+
+            sale.SaleAmount = saleAmount;
+            #endregion
+
+            #region Sale Date
+            Console.WriteLine("");
+            Console.Write("Tarixi daxil edin (gun.ay.il):");
+            string saleDateInput = Console.ReadLine();
+            DateTime saleDate;
+
+            while (!DateTime.TryParse(saleDateInput, out saleDate))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Tarixi daxil etməlisiniz!");
+                saleDateInput = Console.ReadLine();
+            }
+
+            sale.SaleDate = saleDate;
+            #endregion
+
+            #region Sale Item
+
+            List<SaleItem> saleItems = new List<SaleItem>();
+
+
+            #endregion
         }
         #endregion
     }
