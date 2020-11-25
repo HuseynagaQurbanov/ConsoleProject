@@ -3,6 +3,7 @@ using MarketManagmentSystem.infrastructure.Enums;
 using MarketManagmentSystem.infrastructure.Models;
 using MarketManagmentSystem.infrastructure.Services;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MarketManagmentSystem
@@ -49,9 +50,11 @@ namespace MarketManagmentSystem
                         ShowSalesMenu();
                         break;
                     default:
+                        Console.WriteLine("");
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("Siz yalnış seçim etdiniz,0-2 aralığında seçim etməlisiniz");
                         Console.WriteLine("--------------------------------");
+                        Console.WriteLine("");
                         break;
                 }
                 #endregion
@@ -98,9 +101,11 @@ namespace MarketManagmentSystem
                         ShowAddProduct();
                         break;
                     case 2:
-                        continue;
+                        ShowEditProduct();
+                        break;
                     case 3:
-                        continue;
+                        ShowRemoveProduct();
+                        break;
                     case 4:
                         ShowProductList();
                         break;
@@ -111,6 +116,7 @@ namespace MarketManagmentSystem
                     case 7:
                         continue;
                     default:
+                        Console.WriteLine("");
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("Siz yalnış seçim etdiniz,1-7 aralığında seçim etməlisiniz");
                         Console.WriteLine("--------------------------------");
@@ -195,8 +201,9 @@ namespace MarketManagmentSystem
                 #region Product Category Menu 
                 Console.WriteLine("Kateqoriya daxil edin:");
                 Console.WriteLine("1. Televizorlar");
-                Console.WriteLine("2. Ayaqqabilar");
+                Console.WriteLine("2. Telefonlar");
                 Console.WriteLine("3. Soyuducular");
+                Console.WriteLine("4. Kompyuterlər");
                 #endregion
 
                 #region Product Category Selection
@@ -216,28 +223,32 @@ namespace MarketManagmentSystem
                 switch (selectInt)
                 {
                     case 1:
-                        product.ProductCategory = ProductCategoryType.Televizorlar;
+                        product.ProductCategory = ProductCategoryType.TV;
                         break;
                     case 2:
-                        product.ProductCategory = ProductCategoryType.Soyuducular;
+                        product.ProductCategory = ProductCategoryType.Phone;
                         break;
                     case 3:
-                        product.ProductCategory = ProductCategoryType.Ayaqqabilar;
+                        product.ProductCategory = ProductCategoryType.Refrigerator;
+                        break;
+                    case 4:
+                        product.ProductCategory = ProductCategoryType.Computer;
                         break;
                     default:
                         Console.WriteLine("--------------------------------");
-                        Console.WriteLine("Siz yalnış seçim etdiniz,1-3 aralığında seçim etməlisiniz");
+                        Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
                         Console.WriteLine("--------------------------------");
                         break;
                 }
                 #endregion
 
-            } while (selectInt != 0);
+            } while (selectInt == 0);
 
             #endregion
 
             #region Product Name
 
+            Console.WriteLine("");
             Console.Write("Məhsul adı daxil edin :");
             product.ProductName = Console.ReadLine();
             Console.WriteLine("");
@@ -252,6 +263,7 @@ namespace MarketManagmentSystem
 
             while (!double.TryParse(productPriceInput, out productPrice))
             {
+                Console.WriteLine("");
                 Console.WriteLine("Rəqəm daxil etməlisiniz!");
                 productPriceInput = Console.ReadLine();
             }
@@ -308,8 +320,110 @@ namespace MarketManagmentSystem
             table.Write();
         }
 
+        static void ShowEditProduct()
+        {
+            Product product = new Product();
+     
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Məhsul üzərində düzəliş etmək --------------");
+            Console.Write("Məhsulun kodunu daxil edin: ");
+            string code = Console.ReadLine();
+
+            List<Product> productCode = _marketableService.EditProduct(code);
+
+            #region Product Name Change
+            Console.WriteLine("");
+            Console.Write("Məhsulun yeni adını daxil edin: ");
+            string productName = Console.ReadLine();
+            #endregion
+
+            #region Product Quantity Change
+            Console.WriteLine("");
+            Console.Write("Məhsulun yeni sayını daxil edin: ");
+            int productQuantity = Convert.ToInt32(Console.ReadLine());            //Exception vermeliyem
+            #endregion
+
+            #region Product Price Change
+            Console.WriteLine("");
+            Console.Write("Məhsulun yeni məbləğini daxil edin: ");
+            double productPrice = Convert.ToDouble(Console.ReadLine());           //Exception vermeliyem
+            #endregion
+
+            #region Category Change Menu
+            Console.WriteLine("");
+            int selectInt;
+            do
+            {
+                #region Product Category Menu 
+                Console.WriteLine("Məhsulun yeni kateqoriyasını daxil edin: ");
+                Console.WriteLine("0. Televizorlar");
+                Console.WriteLine("1. Telefonlar");
+                Console.WriteLine("2. Soyuducular");
+                Console.WriteLine("3. Kompyuterlər");
+                #endregion
+
+                #region Product Category Selection
+                Console.WriteLine("");
+                Console.Write("Seçiminizi edin : ");
+                string select = Console.ReadLine();
+
+                while (!int.TryParse(select, out selectInt))
+                {
+                    Console.WriteLine("");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
+                    select = Console.ReadLine();
+                }
+                #endregion
+
+                #region Product Category Switch
+                switch (selectInt)
+                {
+                    case 0:
+                        product.ProductCategory = ProductCategoryType.TV;
+                        break;
+                    case 1:
+                        product.ProductCategory = ProductCategoryType.Phone;
+                        break;
+                    case 2:
+                        product.ProductCategory = ProductCategoryType.Refrigerator;
+                        break;
+                    case 3:
+                        product.ProductCategory = ProductCategoryType.Computer;
+                        break;
+                    default:
+                        Console.WriteLine("--------------------------------");
+                        Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
+                        Console.WriteLine("--------------------------------");
+                        break;
+                }
+                #endregion
+
+            } while (selectInt ==-1);
+
+            #endregion
 
 
+            foreach (var item in productCode)
+            {
+                item.ProductName = productName;
+                item.ProductQuantity = productQuantity;
+                item.ProductPrice = productPrice;
+                item.ProductCategory = (ProductCategoryType)selectInt;
+                    
+            }
+        }
+
+        static void ShowRemoveProduct()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Məhsulu silmək --------------");
+
+            Console.WriteLine("");
+            Console.Write("Silmək istədiyiniz məhsulun kodunu daxil edin: ");                         //Exception vermeliyem
+
+            string code = Console.ReadLine();
+            _marketableService.RemoveProduct(code);
+        }
         #endregion
     }
 }

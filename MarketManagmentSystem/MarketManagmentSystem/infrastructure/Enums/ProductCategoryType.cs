@@ -4,8 +4,9 @@ namespace MarketManagmentSystem.infrastructure.Enums
 {
     public enum ProductCategoryType
     {
-        Televizorlar = 0,
-        Ayaqqabilar = 1,
-        Soyuducular = 2
+        TV = 0,
+        Phone = 1,
+        Refrigerator = 2,
+        Computer = 3
     }
 }

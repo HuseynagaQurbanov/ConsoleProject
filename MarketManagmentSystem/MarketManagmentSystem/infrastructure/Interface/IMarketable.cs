@@ -19,9 +19,10 @@ namespace MarketManagmentSystem.infrastructure.Interface
         List<Sale> GetSaleByDate(DateTime Date);
         void GetSaleBySaleNumber(double saleNumber);
         void AddProduct(Product product);
-        void EditProduct(string productCode);
+        List<Product> EditProduct(string productCode);
         List<Product> GetProductsByCategoryName(ProductCategoryType productCategory);
         List<Product> GetProductsByAmountRange(double startAmount, double endAmount);
         List<Product> GetProductsByProductName(string productName);
+        void RemoveProduct(string productCode);
     }
 }

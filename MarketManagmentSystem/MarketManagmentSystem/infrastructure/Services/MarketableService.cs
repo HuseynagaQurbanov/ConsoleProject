@@ -3,6 +3,7 @@ using MarketManagmentSystem.infrastructure.Interface;
 using MarketManagmentSystem.infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MarketManagmentSystem.infrastructure.Services
@@ -19,13 +20,22 @@ namespace MarketManagmentSystem.infrastructure.Services
         {
             _products = new List<Product>();
 
-            //_products.Add(new Product
-            //{
-            //    ProductName = "8K HDR 75 Smart TV Samsung QE75Q900RBUXRU",
-            //    ProductPrice = 1000,
-            //    ProductQuantity = 2,
-            //    ProductCode = "asjdh423jksdjk"
-            //});
+            _products.Add(new Product
+            {
+                ProductCategory = ProductCategoryType.Refrigerator,
+                ProductName = "Indesit TIAA 16 (UA)",
+                ProductPrice = 509,
+                ProductQuantity = 10,
+                ProductCode = "IN000012954"
+            });
+            _products.Add(new Product
+            {
+                ProductCategory = ProductCategoryType.Phone,
+                ProductName = "Telefon iPhone 12 Mini 64GB Blue",
+                ProductPrice = 1969,
+                ProductQuantity = 5,
+                ProductCode = "IN000021939"
+            });
         }
 
         public void AddProduct(Product product)
@@ -38,9 +48,9 @@ namespace MarketManagmentSystem.infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public void EditProduct(string productCode)
+        public List<Product> EditProduct(string productCode)
         {
-            throw new NotImplementedException();
+            return _products.FindAll(p => p.ProductCode == productCode).ToList();
         }
 
         public List<Product> GetProductsByAmountRange(double startAmount, double endAmount)
@@ -96,6 +106,13 @@ namespace MarketManagmentSystem.infrastructure.Services
         public void AddSale(Sale sale)
         {
             throw new NotImplementedException();
+        }
+
+        public void RemoveProduct(string productCode)
+        {
+            var resultlist = _products.ToList();
+            var itemToRemove = resultlist.Single(r => r.ProductCode == productCode);
+            _products.Remove(itemToRemove);
         }
     }
 }
