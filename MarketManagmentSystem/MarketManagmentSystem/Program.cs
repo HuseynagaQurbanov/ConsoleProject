@@ -150,11 +150,13 @@ namespace MarketManagmentSystem
                 #endregion
 
                 #region Third Menu Selection
+                Console.WriteLine("");
                 Console.Write("Seçiminizi edin : ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
                 {
+                    Console.WriteLine("");
                     Console.WriteLine("Rəqəm daxil etməlisiniz!");
                     select = Console.ReadLine();
                 }
@@ -164,14 +166,16 @@ namespace MarketManagmentSystem
                 switch (selectInt)
                 {
                     case 1:
-                        ShowAddSale();
+                        //ShowAddSale();
                         break;
                     case 2:
                         continue;
                     case 3:
-                        continue;
+                        ShowRemoveSale();
+                        break;
                     case 4:
-                        continue;
+                        ShowSaleList();
+                        break;
                     case 5:
                         continue;
                     case 6:
@@ -308,7 +312,7 @@ namespace MarketManagmentSystem
             }
 
             Console.WriteLine("");
-            Console.WriteLine("-------------- Yeni satış əlavə edildi --------------");
+            Console.WriteLine("-------------- Yeni məhsul əlavə edildi --------------");
         }
 
         static void ShowProductList()
@@ -556,64 +560,126 @@ namespace MarketManagmentSystem
         #endregion
 
         #region Sale Methods
-        static void ShowAddSale()
+        //static void ShowAddSale()
+        //{
+        //    Console.WriteLine("");
+        //    Console.WriteLine("-------------- Yeni satış əlavə et --------------");
+
+        //    Sale sale = new Sale();
+
+        //    #region Sale Number
+        //    Console.WriteLine("");
+        //    Console.Write("Məhsulun nömrəsini daxil edin :");
+        //    string saleNumberInput = Console.ReadLine();
+        //    int saleNumber;
+
+        //    while (!int.TryParse(saleNumberInput, out saleNumber))
+        //    {
+        //        Console.WriteLine("");
+        //        Console.WriteLine("Rəqəm daxil etməlisiniz!");
+        //        saleNumberInput = Console.ReadLine();
+        //    }
+
+        //    sale.SaleNumber = saleNumber;
+        //    #endregion
+
+        //    #region Sale Amount
+        //    Console.WriteLine("");
+        //    Console.Write("Məhsulun qiymətini daxil edin :");
+        //    string saleAmountInput = Console.ReadLine();
+        //    double saleAmount;
+
+        //    while (!double.TryParse(saleAmountInput, out saleAmount))
+        //    {
+        //        Console.WriteLine("");
+        //        Console.WriteLine("Rəqəm daxil etməlisiniz!");
+        //        saleAmountInput = Console.ReadLine();
+        //    }
+
+        //    sale.SaleAmount = saleAmount;
+        //    #endregion
+
+        //    #region Sale Date
+        //    Console.WriteLine("");
+        //    Console.Write("Tarixi daxil edin (Ay.Gün.İl):");
+        //    string saleDateInput = Console.ReadLine();
+        //    DateTime saleDate;
+
+        //    while (!DateTime.TryParse(saleDateInput, out saleDate))
+        //    {
+        //        Console.WriteLine("");
+        //        Console.WriteLine("Tarixi daxil etməlisiniz!");
+        //        saleDateInput = Console.ReadLine();
+        //    }
+
+        //    sale.SaleDate = saleDate;
+        //    #endregion
+
+        //    #region Sale Item
+
+            
+
+
+
+        //    Console.WriteLine("");
+        //    int saleItemNumber = Convert.ToInt32(Console.ReadLine());
+
+        //    //foreach (var item in saleItems)
+        //    //{
+        //    //    item.SaleItemNumber = saleItemNumber;
+        //    //}
+
+
+        //    #endregion
+
+        //    if (sale == null)
+        //    {
+        //        _marketableService.AddSale(sale);
+        //    }
+
+        //    Console.WriteLine("");
+        //    Console.WriteLine("-------------- Yeni satış əlavə edildi --------------");
+        //}
+
+        static void ShowSaleList()
+        {
+            {
+                Console.WriteLine("");
+                Console.WriteLine("-------------- Mövcud Satışlar --------------");
+
+                var table = new ConsoleTable("No", "Nömrəsi", "Məbləği", "Məhsul sayı", "Tarixi");
+                int i = 1;
+                foreach (var item in _marketableService.Sales)
+                {
+                    table.AddRow(i, item.SaleNumber, item.SaleAmount, item.SaleItem.Count, item.SaleDate);
+                    i++;
+                }
+
+                table.Write();
+            }
+        }
+
+        static void ShowRemoveSale()
         {
             Sale sale = new Sale();
 
-            #region Sale Number
             Console.WriteLine("");
-            Console.Write("Məhsulun nömrəsini daxil edin :");
-            string saleNumberInput = Console.ReadLine();
-            int saleNumber;
+            Console.WriteLine("-------------- Satışı silmək --------------");
 
-            while (!int.TryParse(saleNumberInput, out saleNumber))
+            Console.WriteLine("");
+            Console.Write("Silmək istədiyiniz satışın kodunu daxil edin: ");                         //Exception vermeliyem
+
+            string codeInput = Console.ReadLine();
+            int code;
+
+            while (!int.TryParse(codeInput, out code))
             {
-                Console.WriteLine("");
                 Console.WriteLine("Rəqəm daxil etməlisiniz!");
-                saleNumberInput = Console.ReadLine();
+                codeInput = Console.ReadLine();
             }
 
-            sale.SaleNumber = saleNumber;
-            #endregion
-
-            #region Sale Amount
+            sale.SaleNumber = code;
             Console.WriteLine("");
-            Console.Write("Məhsulun qiymətini daxil edin :");
-            string saleAmountInput = Console.ReadLine();
-            int saleAmount;
-
-            while (!int.TryParse(saleAmountInput, out saleAmount))
-            {
-                Console.WriteLine("");
-                Console.WriteLine("Rəqəm daxil etməlisiniz!");
-                saleAmountInput = Console.ReadLine();
-            }
-
-            sale.SaleAmount = saleAmount;
-            #endregion
-
-            #region Sale Date
-            Console.WriteLine("");
-            Console.Write("Tarixi daxil edin (gun.ay.il):");
-            string saleDateInput = Console.ReadLine();
-            DateTime saleDate;
-
-            while (!DateTime.TryParse(saleDateInput, out saleDate))
-            {
-                Console.WriteLine("");
-                Console.WriteLine("Tarixi daxil etməlisiniz!");
-                saleDateInput = Console.ReadLine();
-            }
-
-            sale.SaleDate = saleDate;
-            #endregion
-
-            #region Sale Item
-
-            List<SaleItem> saleItems = new List<SaleItem>();
-
-
-            #endregion
         }
         #endregion
     }

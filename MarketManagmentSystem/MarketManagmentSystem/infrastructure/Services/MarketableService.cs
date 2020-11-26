@@ -18,6 +18,8 @@ namespace MarketManagmentSystem.infrastructure.Services
 
         public MarketableService()
         {
+
+            _sales = new List<Sale>();
             _products = new List<Product>();
 
             _products.Add(new Product
@@ -44,8 +46,34 @@ namespace MarketManagmentSystem.infrastructure.Services
                 ProductQuantity = 7,
                 ProductCode = "IN000015880"
             });
+
+            _sales.Add(new Sale
+            {
+                SaleNumber = 121212,
+                SaleAmount = 34.70,
+                SaleDate = new DateTime(2020, 11, 05),
+                SaleItem = new List<SaleItem>()
+                {
+                    new SaleItem
+                    {
+                        SaleItemNumber = 1212,
+                        SaleCount = 5,
+                        SaleProduct = new Product()
+                        {
+                            ProductCategory = ProductCategoryType.Refrigerator,
+                            ProductName = "Gorenje NRK6192KW",
+                            ProductPrice = 789,
+                            ProductQuantity = 7,
+                            ProductCode = "IN000015880"
+                        }
+                    }
+                }
+
+
+            });
         }
 
+        #region Product Methods
         public void AddProduct(Product product)
         {
             _products.Add(product);
@@ -82,13 +110,14 @@ namespace MarketManagmentSystem.infrastructure.Services
             var itemToRemove = resultlist.Single(r => r.ProductCode == productCode);
             _products.Remove(itemToRemove);
         }
+        #endregion
 
-        public void AddSale(string productCode)
+        public void AddSale(Sale sale)
         {
-            throw new NotImplementedException();
+            _sales.Add(sale);
         }
 
-        public void GetSaleByDate(DateTime Date)
+        public void GetSaleByDate(DateTime date)
         {
             throw new NotImplementedException();
         }
@@ -118,16 +147,11 @@ namespace MarketManagmentSystem.infrastructure.Services
             throw new NotImplementedException();
         }
 
-        List<Sale> IMarketable.GetSaleByDate(DateTime Date)
+        public void RemoveSale(int saleNumber)
         {
-            throw new NotImplementedException();
+            
         }
 
-        public void AddSale(Sale sale)
-        {
-            throw new NotImplementedException();
-        }
-
-        
+       
     }
 }

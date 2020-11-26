@@ -13,10 +13,11 @@ namespace MarketManagmentSystem.infrastructure.Interface
 
         void AddSale(Sale sale);
         void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity);
+        void RemoveSale(int saleNumber);
         List<Sale> GetSales();
         List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate);
         List<Sale> GetSalesByAmountRange(double startAmount, double endAmount);
-        List<Sale> GetSaleByDate(DateTime Date);
+        void GetSaleByDate(DateTime date);
         void GetSaleBySaleNumber(double saleNumber);
         void AddProduct(Product product);
         List<Product> EditProduct(string productCode);
