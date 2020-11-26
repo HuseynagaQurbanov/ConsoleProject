@@ -56,7 +56,7 @@ namespace MarketManagmentSystem.infrastructure.Services
                 {
                     new SaleItem
                     {
-                        SaleItemNumber = 1212,
+                        SaleItemNumber = 1,
                         SaleCount = 5,
                         SaleProduct = new Product()
                         {
@@ -65,6 +65,31 @@ namespace MarketManagmentSystem.infrastructure.Services
                             ProductPrice = 789,
                             ProductQuantity = 7,
                             ProductCode = "IN000015880"
+                        }
+                    }
+                }
+
+
+            });
+
+            _sales.Add(new Sale
+            {
+                SaleNumber = 2,
+                SaleAmount = 38.70,
+                SaleDate = new DateTime(2020, 10, 05),
+                SaleItem = new List<SaleItem>()
+                {
+                    new SaleItem
+                    {
+                        SaleItemNumber = 12,
+                        SaleCount = 7,
+                        SaleProduct = new Product()
+                        {
+                            ProductCategory = ProductCategoryType.Refrigerator,
+                            ProductName = "Zuleyxa",
+                            ProductPrice = 89,
+                            ProductQuantity = 2,
+                            ProductCode = "IN000015850"
                         }
                     }
                 }
@@ -139,7 +164,7 @@ namespace MarketManagmentSystem.infrastructure.Services
 
         public List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return _sales.Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate).ToList();
         }
 
         public void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity)
@@ -149,7 +174,9 @@ namespace MarketManagmentSystem.infrastructure.Services
 
         public void RemoveSale(int saleNumber)
         {
-            
+            Sale sale = _sales.Find(s => s.SaleNumber == saleNumber);
+
+            _sales.Remove(sale);
         }
 
        
