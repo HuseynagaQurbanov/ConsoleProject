@@ -1293,27 +1293,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\huseynyg\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Qusi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\huseynyg\\Desktop\\My-Project\\MarketManagmentSystem\\MarketManagmentSystem\\MarketManagmentSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Qusi\\Documents\\GitHub\\ConsoleProject\\MarketManagmentSystem\\MarketManagmentSystem\\MarketManagmentSystem.csproj",
       "projectName": "MarketManagmentSystem",
-      "projectPath": "C:\\Users\\huseynyg\\Desktop\\My-Project\\MarketManagmentSystem\\MarketManagmentSystem\\MarketManagmentSystem.csproj",
-      "packagesPath": "C:\\Users\\huseynyg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\huseynyg\\Desktop\\My-Project\\MarketManagmentSystem\\MarketManagmentSystem\\obj\\",
+      "projectPath": "C:\\Users\\Qusi\\Documents\\GitHub\\ConsoleProject\\MarketManagmentSystem\\MarketManagmentSystem\\MarketManagmentSystem.csproj",
+      "packagesPath": "C:\\Users\\Qusi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Qusi\\Documents\\GitHub\\ConsoleProject\\MarketManagmentSystem\\MarketManagmentSystem\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\huseynyg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\Qusi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
@@ -1324,6 +1317,7 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
+          "targetAlias": "netcoreapp2.2",
           "projectReferences": {}
         }
       },
@@ -1335,6 +1329,7 @@
     },
     "frameworks": {
       "netcoreapp2.2": {
+        "targetAlias": "netcoreapp2.2",
         "dependencies": {
           "ConsoleTables": {
             "target": "Package",
@@ -1348,10 +1343,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

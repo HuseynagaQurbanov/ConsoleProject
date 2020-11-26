@@ -49,9 +49,9 @@ namespace MarketManagmentSystem.infrastructure.Services
 
             _sales.Add(new Sale
             {
-                SaleNumber = 121212,
+                SaleNumber = 1,
                 SaleAmount = 34.70,
-                SaleDate = new DateTime(2020, 11, 05),
+                SaleDate = new DateTime(2020, 5, 16),
                 SaleItem = new List<SaleItem>()
                 {
                     new SaleItem
@@ -76,7 +76,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             {
                 SaleNumber = 2,
                 SaleAmount = 38.70,
-                SaleDate = new DateTime(2020, 10, 05),
+                SaleDate = new DateTime(2020, 7, 23),
                 SaleItem = new List<SaleItem>()
                 {
                     new SaleItem
@@ -137,39 +137,30 @@ namespace MarketManagmentSystem.infrastructure.Services
         }
         #endregion
 
+        #region Sale Methods
         public void AddSale(Sale sale)
         {
             _sales.Add(sale);
         }
 
-        public void GetSaleByDate(DateTime date)
+        public List<Sale> GetSaleByDate(DateTime date)
         {
-            throw new NotImplementedException();
+            return _sales.Where(s => s.SaleDate == date).ToList();
         }
 
-        public void GetSaleBySaleNumber(double saleNumber)
+        public List<Sale> GetSaleBySaleNumber(double saleNumber)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Sale> GetSales()
-        {
-            throw new NotImplementedException();
+            return _sales.Where(s => s.SaleNumber == saleNumber).ToList();
         }
 
         public List<Sale> GetSalesByAmountRange(double startAmount, double endAmount)
         {
-            throw new NotImplementedException();
+            return _sales.Where(s => s.SaleAmount >= startAmount && s.SaleAmount <= endAmount).ToList();
         }
 
         public List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate)
         {
             return _sales.Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate).ToList();
-        }
-
-        public void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity)
-        {
-            throw new NotImplementedException();
         }
 
         public void RemoveSale(int saleNumber)
@@ -179,6 +170,10 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Remove(sale);
         }
 
-       
+        public void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
     }
 }
