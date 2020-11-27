@@ -12,6 +12,7 @@ namespace MarketManagmentSystem.infrastructure.Services
     {
         private readonly List<Sale> _sales;
         public List<Sale> Sales => _sales;
+
         private readonly List<SaleItem> _saleItems;
         public List<SaleItem> SaleItems => _saleItems;
 
@@ -24,7 +25,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             _saleItems = new List<SaleItem>();
             _products = new List<Product>();
 
-            #region DefaultProduct
+            #region Default Product
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Refrigerator,
@@ -53,7 +54,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             });
             #endregion
 
-            #region defaultSaleItem
+            #region Default SaleItem
             _saleItems.Add(new SaleItem
             {
                 SaleItemNumber = 11,
@@ -79,7 +80,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             });
             #endregion
 
-            #region defaultsale
+            #region Default Sale
             _sales.Add(new Sale
             {
                 SaleNumber = 1,
@@ -91,16 +92,16 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 2,
-                SaleAmount = 34.70,
-                SaleDate = new DateTime(2020, 5, 16),
+                SaleAmount = 86.90,
+                SaleDate = new DateTime(2020, 8, 19),
                 SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
             });
 
             _sales.Add(new Sale
             {
                 SaleNumber = 3,
-                SaleAmount = 34.70,
-                SaleDate = new DateTime(2020, 5, 16),
+                SaleAmount = 50.70,
+                SaleDate = new DateTime(2020, 11, 27),
                 SaleItem = _saleItems.FindAll(si => si.SaleCount == 12)
             });
             #endregion

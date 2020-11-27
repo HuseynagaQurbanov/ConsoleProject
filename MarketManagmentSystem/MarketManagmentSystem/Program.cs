@@ -169,7 +169,8 @@ namespace MarketManagmentSystem
                         ShowAddSale();
                         break;
                     case 2:
-                        continue;
+                        ShowRemoveProductBySaleItem();
+                        break;
                     case 3:
                         ShowRemoveSale();
                         break;
@@ -621,19 +622,6 @@ namespace MarketManagmentSystem
 
             #region Sale Item
 
-
-
-
-
-            Console.WriteLine("");
-            int saleItemNumber = Convert.ToInt32(Console.ReadLine());
-
-            //foreach (var item in saleItems)
-            //{
-            //    item.SaleItemNumber = saleItemNumber;
-            //}
-
-
             #endregion
 
             if (sale == null)
@@ -645,13 +633,18 @@ namespace MarketManagmentSystem
             Console.WriteLine("-------------- Yeni satış əlavə edildi --------------");
         }
 
+        static void ShowRemoveProductBySaleItem()
+        {
+
+        }
+
         static void ShowSaleList()
         {
             {
                 Console.WriteLine("");
                 Console.WriteLine("-------------- Mövcud Satışlar --------------");
 
-                var table = new ConsoleTable("No", "Nömrəsi", "Məbləği", "Məhsul sayı", "Tarixi");
+                var table = new ConsoleTable("No", "Nömrəsi", "Məbləği", "İtem sayı", "Tarixi");
                 int i = 1;
                 foreach (var item in _marketableService.Sales)
                 {
@@ -729,7 +722,7 @@ namespace MarketManagmentSystem
                 if (result.Count != 0)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy"));         //exception
+                    Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + item.SaleItem.Count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));         //exception
                 }
             }
         }                                        //Exception
@@ -776,7 +769,7 @@ namespace MarketManagmentSystem
                 if(result.Count != 0)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy"));
+                    Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + item.SaleItem.Count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
                 }
             }
         }                                      //Exception
@@ -787,7 +780,7 @@ namespace MarketManagmentSystem
             Console.WriteLine("-------------- Tarixə görə satışları görmək --------------");
 
             Console.WriteLine("");
-            Console.WriteLine("Görmək istədiyiniz satışın tarixini daxil edin: ");
+            Console.Write("Görmək istədiyiniz satışın tarixini daxil edin (Gün.Ay.İl): ");
 
             string dateInput = Console.ReadLine();
             DateTime date;
@@ -804,7 +797,7 @@ namespace MarketManagmentSystem
             foreach (var item in sales)
             {
                 Console.WriteLine("");
-                Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy"));
+                Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + item.SaleItem.Count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
             }
         }                                              //Exception
 
@@ -831,14 +824,14 @@ namespace MarketManagmentSystem
             foreach (var item in sales)
             {
                 Console.WriteLine("");
-                Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy") + "" );
+                Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" +"Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " +item.SaleItem.Count + "\n" + "Tarixi:" +item.SaleDate.ToString("dd.MM.yyyy"));
             }
 
             var list =_marketableService.ShowSaleItem(saleNumber);
 
             foreach (var item in list)
             {
-                Console.WriteLine("Sayi: "+item.SaleCount+ "  "+item.SaleItemNumber+""+item.SaleProduct.ProductName);
+                Console.WriteLine("Sayi: " + item.SaleCount + "\n" + "İtem Nömrəsi: " + item.SaleItemNumber + "\n" + "Məhsulun Adı: " + item.SaleProduct.ProductName);
             }
         }                                        //Exception
         #endregion
