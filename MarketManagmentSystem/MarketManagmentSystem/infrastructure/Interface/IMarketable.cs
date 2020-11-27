@@ -12,7 +12,7 @@ namespace MarketManagmentSystem.infrastructure.Interface
         List<SaleItem> SaleItems { get; }
         List<Product> Products { get; }
 
-        void AddSale(Sale sale);
+        void AddSale(int saleNumber, int saleCount);
         void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity);
         void RemoveSale(int saleNumber);
         List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate);

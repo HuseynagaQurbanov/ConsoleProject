@@ -574,7 +574,7 @@ namespace MarketManagmentSystem
 
             #region Sale Number
             Console.WriteLine("");
-            Console.Write("Məhsulun nömrəsini daxil edin :");
+            Console.Write("Satışın nömrəsini daxil edin :");
             string saleNumberInput = Console.ReadLine();
             int saleNumber;
 
@@ -590,7 +590,7 @@ namespace MarketManagmentSystem
 
             #region Sale Amount
             Console.WriteLine("");
-            Console.Write("Məhsulun qiymətini daxil edin :");
+            Console.Write("Satışın qiymətini daxil edin :");
             string saleAmountInput = Console.ReadLine();
             double saleAmount;
 
@@ -621,12 +621,55 @@ namespace MarketManagmentSystem
             #endregion
 
             #region Sale Item
+            SaleItem saleItems = new SaleItem();
+
+            #region Sale Item Number
+            Console.WriteLine("");
+            Console.Write("Məhsulun nömrəsini daxil edin :");
+            string saleİtemNumberInput = Console.ReadLine();
+            int saleİtemNumber;
+
+            while (!int.TryParse(saleİtemNumberInput, out saleİtemNumber))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                saleİtemNumberInput = Console.ReadLine();
+            }
+
+            saleItems.SaleItemNumber = saleİtemNumber;
+            #endregion
+
+            #region Sale Item Count
+            Console.WriteLine("");
+            Console.Write("Məhsulun nömrəsini daxil edin :");
+            string saleİtemCountInput = Console.ReadLine();
+            int saleİtemCount;
+
+            while (!int.TryParse(saleİtemCountInput, out saleİtemCount))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                saleİtemCountInput = Console.ReadLine();
+            }
+
+            saleItems.SaleCount = saleİtemCount;
+            #endregion
+
+            #region Sale product
+            Product product = new Product();
+
+            Console.WriteLine("");
+            Console.Write("Məhsulun nömrəsini daxil edin :");
+            string productCodeInput = Console.ReadLine();
+
+            product.ProductCode = productCodeInput;
+            #endregion
 
             #endregion
 
             if (sale == null)
             {
-                _marketableService.AddSale(sale);
+                _marketableService.AddSale(saleNumber, saleİtemCount);
             }
 
             Console.WriteLine("");

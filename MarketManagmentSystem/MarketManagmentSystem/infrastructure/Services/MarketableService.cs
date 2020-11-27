@@ -147,8 +147,25 @@ namespace MarketManagmentSystem.infrastructure.Services
         #endregion
 
         #region Sale Methods
-        public void AddSale(Sale sale)
+        public void AddSale(int saleNumber, int saleCount)
         {
+            List<SaleItem> saleItems = new List<SaleItem>();
+            double price = 0;
+
+            var product = _products.FindAll(p => p.ProductCode.Equals(saleCount)).FirstOrDefault();
+            var saleItem = new SaleItem();
+            var Code = saleCount;
+            saleItem.SaleCount = saleCount;
+            saleItem.SaleProduct = product;
+            saleItem.SaleItemNumber = saleItems.Count + 1;
+            saleItems.Add(saleItem);
+            price += saleCount * saleItem.SaleProduct.ProductPrice;
+            var saleNumber1 = _sales.Count + 1;
+            var saleDate = DateTime.Now;
+            var sale = new Sale();
+            sale.SaleNumber = saleNumber;
+            sale.SaleAmount = price;
+            sale.SaleDate = saleDate;
             _sales.Add(sale);
         }
 
