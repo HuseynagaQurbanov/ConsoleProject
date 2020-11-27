@@ -605,7 +605,7 @@ namespace MarketManagmentSystem
 
             #region Sale Date
             Console.WriteLine("");
-            Console.Write("Tarixi daxil edin (Ay.Gün.İl):");
+            Console.Write("Tarixi daxil edin (Gün.Ay.İl):");
             string saleDateInput = Console.ReadLine();
             DateTime saleDate;
 
@@ -693,7 +693,7 @@ namespace MarketManagmentSystem
 
             #region Start Date
             Console.WriteLine("");
-            Console.Write("Başlanğıc tarixi daxil edin (Ay.Gün.İl) : ");
+            Console.Write("Başlanğıc tarixi daxil edin (Gün.Ay.İl) : ");
             string startDateInput = Console.ReadLine();
             Console.WriteLine("");
 
@@ -708,7 +708,7 @@ namespace MarketManagmentSystem
             #endregion
 
             #region End Date
-            Console.Write("Bitiş tarixi daxil edin (Ay.Gün.İl) : ");
+            Console.Write("Bitiş tarixi daxil edin (Gün.Ay.İl) : ");
             string endDateInput = Console.ReadLine();
             Console.WriteLine("");
 
@@ -831,9 +831,16 @@ namespace MarketManagmentSystem
             foreach (var item in sales)
             {
                 Console.WriteLine("");
-                Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy"));
+                Console.WriteLine(item.SaleNumber + " " + item.SaleAmount.ToString("#.##") + " " + item.SaleItem.Count + " " + item.SaleDate.ToString("dd.MM.yyyy") + "" );
             }
-        }                                        //Exception       //Yarim
+
+            var list =_marketableService.ShowSaleItem(saleNumber);
+
+            foreach (var item in list)
+            {
+                Console.WriteLine("Sayi: "+item.SaleCount+ "  "+item.SaleItemNumber+""+item.SaleProduct.ProductName);
+            }
+        }                                        //Exception
         #endregion
     }
 }

@@ -21,3 +21,14 @@ C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagm
 C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.dll
 C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
 C:\Users\Qusi\Documents\GitHub\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.genruntimeconfig.cache
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.deps.json
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.runtimeconfig.json
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.runtimeconfig.dev.json
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.dll
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\bin\Debug\netcoreapp2.2\MarketManagmentSystem.pdb
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.csprojAssemblyReference.cache
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.csproj.CoreCompileInputs.cache
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.AssemblyInfoInputs.cache
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.AssemblyInfo.cs
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.dll
+C:\Users\huseynyg\Desktop\ConsoleProject\MarketManagmentSystem\MarketManagmentSystem\obj\Debug\netcoreapp2.2\MarketManagmentSystem.pdb

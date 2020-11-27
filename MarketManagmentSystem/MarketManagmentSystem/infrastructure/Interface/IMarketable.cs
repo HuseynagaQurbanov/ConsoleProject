@@ -9,6 +9,7 @@ namespace MarketManagmentSystem.infrastructure.Interface
     public interface IMarketable
     {
         List<Sale> Sales { get; }
+        List<SaleItem> SaleItems { get; }
         List<Product> Products { get; }
 
         void AddSale(Sale sale);
@@ -24,5 +25,6 @@ namespace MarketManagmentSystem.infrastructure.Interface
         List<Product> GetProductsByAmountRange(double startAmount, double endAmount);
         List<Product> GetProductsByProductName(string productName);
         void RemoveProduct(string productCode);
+        List<SaleItem> ShowSaleItem(int saleNumber);
     }
 }

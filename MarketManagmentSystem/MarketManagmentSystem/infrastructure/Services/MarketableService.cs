@@ -12,16 +12,19 @@ namespace MarketManagmentSystem.infrastructure.Services
     {
         private readonly List<Sale> _sales;
         public List<Sale> Sales => _sales;
+        private readonly List<SaleItem> _saleItems;
+        public List<SaleItem> SaleItems => _saleItems;
 
         private readonly List<Product> _products;
         public List<Product> Products => _products;
 
         public MarketableService()
         {
-
             _sales = new List<Sale>();
+            _saleItems = new List<SaleItem>();
             _products = new List<Product>();
 
+            #region DefaultProduct
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Refrigerator,
@@ -30,6 +33,7 @@ namespace MarketManagmentSystem.infrastructure.Services
                 ProductQuantity = 10,
                 ProductCode = "IN000012954"
             });
+
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Phone,
@@ -38,6 +42,7 @@ namespace MarketManagmentSystem.infrastructure.Services
                 ProductQuantity = 5,
                 ProductCode = "IN000021939"
             });
+
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Refrigerator,
@@ -46,56 +51,59 @@ namespace MarketManagmentSystem.infrastructure.Services
                 ProductQuantity = 7,
                 ProductCode = "IN000015880"
             });
+            #endregion
 
+            #region defaultSaleItem
+            _saleItems.Add(new SaleItem
+            {
+                SaleItemNumber = 11,
+                SaleCount = 1,
+                SaleProduct = _products.Find(p => p.ProductCode == "IN000012954")
+
+            });
+
+            _saleItems.Add(new SaleItem
+            {
+                SaleItemNumber = 22,
+                SaleCount = 3,
+                SaleProduct = _products.Find(p => p.ProductCode == "IN000021939")
+
+            });
+
+            _saleItems.Add(new SaleItem
+            {
+                SaleItemNumber = 33,
+                SaleCount = 12,
+                SaleProduct = _products.Find(p => p.ProductCode == "IN000015880")
+
+            });
+            #endregion
+
+            #region defaultsale
             _sales.Add(new Sale
             {
                 SaleNumber = 1,
                 SaleAmount = 34.70,
                 SaleDate = new DateTime(2020, 5, 16),
-                SaleItem = new List<SaleItem>()
-                {
-                    new SaleItem
-                    {
-                        SaleItemNumber = 1,
-                        SaleCount = 5,
-                        SaleProduct = new Product()
-                        {
-                            ProductCategory = ProductCategoryType.Refrigerator,
-                            ProductName = "Gorenje NRK6192KW",
-                            ProductPrice = 789,
-                            ProductQuantity = 7,
-                            ProductCode = "IN000015880"
-                        }
-                    }
-                }
-
-
+                SaleItem = _saleItems.FindAll(si=>si.SaleCount==1)
             });
 
             _sales.Add(new Sale
             {
                 SaleNumber = 2,
-                SaleAmount = 38.70,
-                SaleDate = new DateTime(2020, 7, 23),
-                SaleItem = new List<SaleItem>()
-                {
-                    new SaleItem
-                    {
-                        SaleItemNumber = 12,
-                        SaleCount = 7,
-                        SaleProduct = new Product()
-                        {
-                            ProductCategory = ProductCategoryType.Refrigerator,
-                            ProductName = "Zuleyxa",
-                            ProductPrice = 89,
-                            ProductQuantity = 2,
-                            ProductCode = "IN000015850"
-                        }
-                    }
-                }
-
-
+                SaleAmount = 34.70,
+                SaleDate = new DateTime(2020, 5, 16),
+                SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
             });
+
+            _sales.Add(new Sale
+            {
+                SaleNumber = 3,
+                SaleAmount = 34.70,
+                SaleDate = new DateTime(2020, 5, 16),
+                SaleItem = _saleItems.FindAll(si => si.SaleCount == 12)
+            });
+            #endregion
         }
 
         #region Product Methods
@@ -173,6 +181,11 @@ namespace MarketManagmentSystem.infrastructure.Services
         public void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity)
         {
             throw new NotImplementedException();
+        }
+
+        public List<SaleItem> ShowSaleItem(int saleNumber)
+        {
+            return _sales.Find(s => s.SaleNumber == saleNumber).SaleItem.ToList();
         }
         #endregion
     }
