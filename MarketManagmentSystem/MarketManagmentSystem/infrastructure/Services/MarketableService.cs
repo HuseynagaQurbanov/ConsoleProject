@@ -1,4 +1,5 @@
 ﻿using MarketManagmentSystem.infrastructure.Enums;
+using MarketManagmentSystem.infrastructure.Exceptions;
 using MarketManagmentSystem.infrastructure.Interface;
 using MarketManagmentSystem.infrastructure.Models;
 using System;
@@ -166,6 +167,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             sale.SaleNumber = saleNumber;
             sale.SaleAmount = amount;
             sale.SaleDate = saleDate;
+            
             _sales.Add(sale);
         }
 
@@ -196,9 +198,16 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Remove(sale);
         }
 
-        public void RemoveProductBySaleItem(int saleNumber, string productCode, int quantity)
+        public double RemoveProductBySaleItem(int saleNumber, string productCode, int productQuantity)
         {
-            throw new NotImplementedException();
+            var sale = GetSaleBySaleNumber(saleNumber);
+            double amount = 0;
+            int saleItemToDeleteIndex = -1;
+
+            for (int i = 0; i < sale.SaleItems.Count; i++)
+            {
+                var saleItem = sale.SaleItems[i];
+            }
         }
 
         public List<SaleItem> ShowSaleItem(int saleNumber)
