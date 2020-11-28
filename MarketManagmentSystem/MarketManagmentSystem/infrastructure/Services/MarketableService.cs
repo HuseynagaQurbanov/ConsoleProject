@@ -74,7 +74,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             _saleItems.Add(new SaleItem
             {
                 SaleItemNumber = 33,
-                SaleCount = 12,
+                SaleCount = 2,
                 SaleProduct = _products.Find(p => p.ProductCode == "IN000015880")
 
             });
@@ -84,7 +84,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 1,
-                SaleAmount = 34.70,
+                SaleAmount = 789,
                 SaleDate = new DateTime(2020, 5, 16),
                 SaleItem = _saleItems.FindAll(si=>si.SaleCount==1)
             });
@@ -92,7 +92,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 2,
-                SaleAmount = 86.90,
+                SaleAmount = 5907,
                 SaleDate = new DateTime(2020, 8, 19),
                 SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
             });
@@ -100,9 +100,9 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 3,
-                SaleAmount = 50.70,
+                SaleAmount = 1578,
                 SaleDate = new DateTime(2020, 11, 27),
-                SaleItem = _saleItems.FindAll(si => si.SaleCount == 12)
+                SaleItem = _saleItems.FindAll(si => si.SaleCount == 2)
             });
             #endregion
         }
@@ -147,24 +147,24 @@ namespace MarketManagmentSystem.infrastructure.Services
         #endregion
 
         #region Sale Methods
-        public void AddSale(int saleNumber, int saleCount)
+        public void AddSale(string productCode, int productQuantity)
         {
             List<SaleItem> saleItems = new List<SaleItem>();
-            double price = 0;
+            double amount = 0;
 
-            var product = _products.FindAll(p => p.ProductCode.Equals(saleCount)).FirstOrDefault();
+            var product = _products.Where(p => p.ProductCode== productCode).FirstOrDefault();
             var saleItem = new SaleItem();
-            var Code = saleCount;
-            saleItem.SaleCount = saleCount;
+            var Code = productCode;
+            saleItem.SaleCount = productQuantity;
             saleItem.SaleProduct = product;
             saleItem.SaleItemNumber = saleItems.Count + 1;
             saleItems.Add(saleItem);
-            price += saleCount * saleItem.SaleProduct.ProductPrice;
-            var saleNumber1 = _sales.Count + 1;
+            amount += productQuantity * saleItem.SaleProduct.ProductPrice;
+            var saleNumber = _sales.Count + 1;
             var saleDate = DateTime.Now;
             var sale = new Sale();
             sale.SaleNumber = saleNumber;
-            sale.SaleAmount = price;
+            sale.SaleAmount = amount;
             sale.SaleDate = saleDate;
             _sales.Add(sale);
         }
