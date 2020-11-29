@@ -529,40 +529,45 @@ namespace MarketManagmentSystem
 
         static void ShowGetProductsByAmountRange()
         {
+            Console.WriteLine("");
             Console.WriteLine("-------------- Qiymət aralığında məhsulların Gostərilməsi --------------");
 
             #region Start Amount
+            Console.WriteLine("");
             Console.Write("Başlanğıc Qiyməti daxil edin:");
             string startAmountInput = Console.ReadLine();
             double startAmount;
 
             while (!double.TryParse(startAmountInput, out startAmount))
             {
+                Console.WriteLine("");
                 Console.WriteLine("Rəqəm daxil etməlisiniz!");
                 startAmountInput = Console.ReadLine();
             }
             #endregion
 
             #region End Amount
+            Console.WriteLine("");
             Console.Write("Bitiş qiyməti daxil edin:");
             string endAmountInput = Console.ReadLine();
             double endAmount;
 
             while (!double.TryParse(endAmountInput, out endAmount))
             {
+                Console.WriteLine("");
                 Console.WriteLine("Rəqəm daxil etməlisiniz!");
                 endAmountInput = Console.ReadLine();
             }
             #endregion
 
             List<Product> result = _marketableService.GetProductsByAmountRange(startAmount, endAmount);
-
+            
             foreach (var item in result)
             {
                 if(result != null)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
+                    Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " +item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti" + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         //exception
                 }
             }
         }                       //Exception vermeliyem
@@ -818,14 +823,24 @@ namespace MarketManagmentSystem
 
             List<Sale> sales = _marketableService.GetSaleByDate(date);
 
-            var count = _marketableService.SaleItems.Select(m => m.SaleCount).FirstOrDefault();
-
-            foreach (var item in sales)
+            if(sales.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
+                Console.WriteLine("==================================");
+                Console.WriteLine("Bu tarixdə satış yoxdur");
+                Console.WriteLine("==================================");
             }
-        }                                              //Exception
+            else
+            {
+                var count = _marketableService.SaleItems.Select(m => m.SaleCount).FirstOrDefault();
+
+                foreach (var item in sales)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
+                }
+            }
+        }                                              
 
         static void ShowGetSaleBySaleNumber()
         {
