@@ -1,5 +1,4 @@
 ﻿using MarketManagmentSystem.infrastructure.Enums;
-using MarketManagmentSystem.infrastructure.Exceptions;
 using MarketManagmentSystem.infrastructure.Interface;
 using MarketManagmentSystem.infrastructure.Models;
 using System;
@@ -20,6 +19,7 @@ namespace MarketManagmentSystem.infrastructure.Services
         private readonly List<Product> _products;
         public List<Product> Products => _products;
 
+        #region Defaults
         public MarketableService()
         {
             _sales = new List<Sale>();
@@ -107,6 +107,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             });
             #endregion
         }
+        #endregion
 
         #region Product Methods
         public void AddProduct(Product product)
@@ -156,19 +157,45 @@ namespace MarketManagmentSystem.infrastructure.Services
             var product = _products.Where(p => p.ProductCode== productCode).FirstOrDefault();
             var saleItem = new SaleItem();
             var Code = productCode;
-            saleItem.SaleCount = productQuantity;
-            saleItem.SaleProduct = product;
-            saleItem.SaleItemNumber = saleItems.Count + 1;
-            saleItems.Add(saleItem);
-            amount += productQuantity * saleItem.SaleProduct.ProductPrice;
-            var saleNumber = _sales.Count + 1;
-            var saleDate = DateTime.Now;
-            var sale = new Sale();
-            sale.SaleNumber = saleNumber;
-            sale.SaleAmount = amount;
-            sale.SaleDate = saleDate;
-            
-            _sales.Add(sale);
+
+            bool check = _products.Exists(p => p.ProductCode == productCode);
+            if (check == false)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("-------------- Daxil etdiyiniz koda görə məhsul tapılmadı --------------");
+            }
+            else
+            {
+                saleItem.SaleCount = productQuantity;
+                if (product.ProductQuantity < productQuantity)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("-------------- Daxil etdiyiniz miqdarda məhsul yoxdur --------------");
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    product.ProductQuantity -= productQuantity;
+                    saleItem.SaleProduct = product;
+                    saleItem.SaleItemNumber = saleItems.Count + 1;
+                    saleItems.Add(saleItem);
+                    amount += productQuantity * saleItem.SaleProduct.ProductPrice;
+
+                    var saleNumber = _sales.Count + 1;
+                    var saleDate = DateTime.Now;
+                    var sale = new Sale();
+
+                    sale.SaleNumber = saleNumber;
+                    sale.SaleAmount = amount;
+                    sale.SaleDate = saleDate;
+
+                    _sales.Add(sale);
+
+                    Console.WriteLine("");
+                    Console.WriteLine("-------------- Yeni Satış əlavə edildi --------------");
+                    Console.WriteLine("");
+                }
+            }
         }
 
         public List<Sale> GetSaleByDate(DateTime date)

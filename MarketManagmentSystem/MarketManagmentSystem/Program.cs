@@ -363,13 +363,28 @@ namespace MarketManagmentSystem
             #region Product Quantity Change
             Console.WriteLine("");
             Console.Write("Məhsulun yeni sayını daxil edin: ");
-            int productQuantity = Convert.ToInt32(Console.ReadLine());            //Exception vermeliyem
+            string productQuantityInput = Console.ReadLine();
+            int productQuantity;
+            while(!int.TryParse(productQuantityInput, out productQuantity))
+            {
+                Console.WriteLine("");
+                Console.Write("Rəqəm daxil etməlisiniz!: ");
+                productQuantityInput = Console.ReadLine();
+            }
             #endregion
 
             #region Product Price Change
             Console.WriteLine("");
             Console.Write("Məhsulun yeni məbləğini daxil edin: ");
-            double productPrice = Convert.ToDouble(Console.ReadLine());           //Exception vermeliyem
+            string productPriceInput = Console.ReadLine();
+            double productPrice;
+
+            while(!double.TryParse(productPriceInput,out productPrice))
+            {
+                Console.WriteLine("");
+                Console.Write("Rəqəm daxil etməlisiniz!: ");
+                productPriceInput = Console.ReadLine();
+            }
             #endregion
 
             #region Category Change Menu
@@ -416,6 +431,7 @@ namespace MarketManagmentSystem
                     default:
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
+                        ShowEditProduct();
                         Console.WriteLine("--------------------------------");
                         break;
                 }
@@ -434,7 +450,7 @@ namespace MarketManagmentSystem
                 item.ProductCategory = (ProductCategoryType)selectInt;
                     
             }
-        }                                    //Exception vermeliyem
+        }                                    
 
         static void ShowRemoveProduct()
         {
@@ -595,10 +611,7 @@ namespace MarketManagmentSystem
             }
 
             _marketableService.AddSale(productCode, productQuantity);
-
-            Console.WriteLine("");
-            Console.WriteLine("-------------- Yeni Satış əlavə edildi --------------");
-        }                                                    //Exception
+        }
 
         static void ShowRemoveProductBySaleItem()
         {
@@ -607,40 +620,40 @@ namespace MarketManagmentSystem
 
             #region Sale Number
             Console.WriteLine("");
-            Console.WriteLine("Satışın nömrəsini daxil edin: ");
+            Console.Write("Satışın nömrəsini daxil edin: ");
             string saleNumberInput = Console.ReadLine();
             int saleNumber;
 
             while(!int.TryParse(saleNumberInput,out saleNumber))
             {
                 Console.WriteLine("");
-                Console.WriteLine("Rəqəm daxil etməlisiniz!: ");
+                Console.Write("Rəqəm daxil etməlisiniz!: ");
                 saleNumberInput = Console.ReadLine();
             }
             #endregion
 
             #region Product Code
             Console.WriteLine("");
-            Console.WriteLine("Məhsulun kodunu daxil edin: ");
+            Console.Write("Məhsulun kodunu daxil edin: ");
             string productCode = Console.ReadLine();
             #endregion
 
             #region Product Quantity
             Console.WriteLine("");
-            Console.WriteLine("Məhsulun sayını daxil edin: ");
+            Console.Write("Məhsulun sayını daxil edin: ");
             string productQuantityInput = Console.ReadLine();
             int productQuantity;
 
             while(!int.TryParse(productQuantityInput,out productQuantity))
             {
                 Console.WriteLine("");
-                Console.WriteLine("Rəqəm daxil etməlisiniz: ");
+                Console.Write("Rəqəm daxil etməlisiniz: ");
                 productQuantityInput = Console.ReadLine();
             }
             #endregion
 
             _marketableService.RemoveProductBySaleItem(saleNumber, productCode, productQuantity);
-        }
+        }                                    //Exception
 
         static void ShowSaleList()
         {
