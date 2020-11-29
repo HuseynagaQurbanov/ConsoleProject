@@ -31,52 +31,52 @@ namespace MarketManagmentSystem.infrastructure.Services
             {
                 ProductCategory = ProductCategoryType.Refrigerator,
                 ProductName = "Indesit TIAA 16 (UA)",
-                ProductPrice = 509,
+                ProductPrice = 25,
                 ProductQuantity = 10,
-                ProductCode = "IN000012954"
+                ProductCode = "AAA"
             });
 
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Phone,
                 ProductName = "Telefon iPhone 12 Mini 64GB Blue",
-                ProductPrice = 1969,
+                ProductPrice = 40,
                 ProductQuantity = 5,
-                ProductCode = "IN000021939"
+                ProductCode = "BBB"
             });
 
             _products.Add(new Product
             {
                 ProductCategory = ProductCategoryType.Refrigerator,
                 ProductName = "Gorenje NRK6192KW",
-                ProductPrice = 789,
+                ProductPrice = 10,
                 ProductQuantity = 7,
-                ProductCode = "IN000015880"
+                ProductCode = "CCC"
             });
             #endregion
 
             #region Default SaleItem
             _saleItems.Add(new SaleItem
             {
-                SaleItemNumber = 11,
+                SaleItemNumber = 1,
                 SaleCount = 1,
-                SaleProduct = _products.Find(p => p.ProductCode == "IN000012954")
+                SaleProduct = _products.Find(p => p.ProductCode == "AAA")
 
             });
 
             _saleItems.Add(new SaleItem
             {
-                SaleItemNumber = 22,
-                SaleCount = 3,
-                SaleProduct = _products.Find(p => p.ProductCode == "IN000021939")
-
-            });
-
-            _saleItems.Add(new SaleItem
-            {
-                SaleItemNumber = 33,
+                SaleItemNumber = 2,
                 SaleCount = 2,
-                SaleProduct = _products.Find(p => p.ProductCode == "IN000015880")
+                SaleProduct = _products.Find(p => p.ProductCode == "BBB")
+
+            });
+
+            _saleItems.Add(new SaleItem
+            {
+                SaleItemNumber = 3,
+                SaleCount = 3,
+                SaleProduct = _products.Find(p => p.ProductCode == "CCC")
 
             });
             #endregion
@@ -85,7 +85,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 1,
-                SaleAmount = 789,
+                SaleAmount = 25,
                 SaleDate = new DateTime(2020, 5, 16),
                 SaleItem = _saleItems.FindAll(si=>si.SaleCount==1)
             });
@@ -93,17 +93,17 @@ namespace MarketManagmentSystem.infrastructure.Services
             _sales.Add(new Sale
             {
                 SaleNumber = 2,
-                SaleAmount = 5907,
+                SaleAmount = 80,
                 SaleDate = new DateTime(2020, 8, 19),
-                SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
+                SaleItem = _saleItems.FindAll(si => si.SaleCount == 2)
             });
 
             _sales.Add(new Sale
             {
                 SaleNumber = 3,
-                SaleAmount = 1578,
+                SaleAmount = 30,
                 SaleDate = new DateTime(2020, 11, 27),
-                SaleItem = _saleItems.FindAll(si => si.SaleCount == 2)
+                SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
             });
             #endregion
         }
@@ -200,14 +200,28 @@ namespace MarketManagmentSystem.infrastructure.Services
 
         public double RemoveProductBySaleItem(int saleNumber, string productCode, int productQuantity)
         {
-            var sale = GetSaleBySaleNumber(saleNumber);
             double amount = 0;
-            int saleItemToDeleteIndex = -1;
 
-            for (int i = 0; i < sale.SaleItems.Count; i++)
+            var prolist = _products.ToList();
+            var salelist = _sales.ToList();
+
+            var sale = salelist.Find(r => r.SaleNumber == saleNumber);
+
+            bool findproduct = prolist.Exists(r => r.ProductCode == productCode);
+            if(findproduct == true)
             {
-                var saleItem = sale.SaleItems[i];
+                var list = prolist.Find(r => r.ProductCode == productCode);
+                if (sale.SaleAmount > list.ProductPrice * productQuantity)
+                {
+                    sale.SaleAmount -= list.ProductPrice * productQuantity;
+                } 
+                else if((sale.SaleAmount == list.ProductPrice* productQuantity))
+                {
+                    _sales.Remove(sale);
+                }
             }
+
+            return amount;
         }
 
         public List<SaleItem> ShowSaleItem(int saleNumber)

@@ -28,7 +28,7 @@ namespace MarketManagmentSystem
 
                 #region First Menu Selection
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin : ");
+                Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
@@ -72,7 +72,7 @@ namespace MarketManagmentSystem
             {
                 #region Second Menu
                 Console.WriteLine("");
-                Console.WriteLine("================================================");
+                Console.WriteLine("========== Məhsullar üzərində əməliyyat ==========");
                 Console.WriteLine("1. Yeni məhsul əlavə etmək");
                 Console.WriteLine("2. Məhsul üzərində düzəliş etmək");
                 Console.WriteLine("3. Məhsulu silmək");
@@ -142,7 +142,7 @@ namespace MarketManagmentSystem
             {
                 #region Third Menu
                 Console.WriteLine("");
-                Console.WriteLine("================================================");
+                Console.WriteLine("========== Satışlar üzərində əməliyyat ==========");
                 Console.WriteLine("1. Yeni satış əlavə etmək");
                 Console.WriteLine("2. Satışdakı məhsulu geri qaytarmaq");
                 Console.WriteLine("3. Satışı silmək");
@@ -156,13 +156,13 @@ namespace MarketManagmentSystem
 
                 #region Third Menu Selection
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin : ");
+                Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
                     select = Console.ReadLine();
                 }
                 #endregion
@@ -230,7 +230,7 @@ namespace MarketManagmentSystem
 
                 #region Product Category Selection
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin : ");
+                Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
@@ -272,7 +272,7 @@ namespace MarketManagmentSystem
             #region Product Name
 
             Console.WriteLine("");
-            Console.Write("Məhsul adı daxil edin :");
+            Console.Write("Məhsul adı daxil edin: ");
             product.ProductName = Console.ReadLine();
             Console.WriteLine("");
 
@@ -280,14 +280,14 @@ namespace MarketManagmentSystem
 
             #region Product Price
 
-            Console.Write("Məhsulun qiymətini daxil edin :");
+            Console.Write("Məhsulun qiymətini daxil edin: ");
             string productPriceInput = Console.ReadLine();
             double productPrice;
 
             while (!double.TryParse(productPriceInput, out productPrice))
             {
                 Console.WriteLine("");
-                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                Console.Write("Rəqəm daxil etməlisiniz!: ");
                 productPriceInput = Console.ReadLine();
             }
 
@@ -298,13 +298,13 @@ namespace MarketManagmentSystem
 
             #region Product Quantity
 
-            Console.Write("Məhsulun sayını daxil edin :");
+            Console.Write("Məhsulun sayını daxil edin: ");
             string productQuantityInput = Console.ReadLine();
             int productQuantity;
 
             while (!int.TryParse(productQuantityInput, out productQuantity))
             {
-                Console.WriteLine("Rəqəm daxil etməlisiniz!");
+                Console.Write("Rəqəm daxil etməlisiniz!: ");
                 productQuantityInput = Console.ReadLine();
             }
 
@@ -314,7 +314,7 @@ namespace MarketManagmentSystem
             #endregion
 
             #region Product Code
-            Console.Write("Məhsulun kodunu daxil edin :");
+            Console.Write("Məhsulun kodunu daxil edin: ");
             product.ProductCode = Console.ReadLine();
             #endregion
 
@@ -387,7 +387,7 @@ namespace MarketManagmentSystem
 
                 #region Product Category Selection
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin : ");
+                Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
 
                 while (!int.TryParse(select, out selectInt))
@@ -434,7 +434,7 @@ namespace MarketManagmentSystem
                 item.ProductCategory = (ProductCategoryType)selectInt;
                     
             }
-        }
+        }                                    //Exception vermeliyem
 
         static void ShowRemoveProduct()
         {
@@ -468,7 +468,7 @@ namespace MarketManagmentSystem
 
                 #region Product Category Selection
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin : ");
+                Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
                 Console.WriteLine("");
 
@@ -509,7 +509,7 @@ namespace MarketManagmentSystem
 
             _marketableService.GetProductsByCategoryName((ProductCategoryType)selectInt);
 
-        }
+        }                      //Exception vermeliyem
 
         static void ShowGetProductsByAmountRange()
         {
@@ -549,7 +549,7 @@ namespace MarketManagmentSystem
                     Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
                 }
             }
-        }
+        }                       //Exception vermeliyem
 
         static void ShowGetProductsByProductName()
         {
@@ -568,7 +568,7 @@ namespace MarketManagmentSystem
                     Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
                 }
             }
-        }
+        }                       //Exception vermeliyem
         #endregion
 
         #region Sale Methods
@@ -588,6 +588,7 @@ namespace MarketManagmentSystem
 
             while (!int.TryParse(productQuantityInput, out productQuantity))
             {
+                Console.WriteLine("");
                 Console.Write("Rəqəm daxil etməlisiniz!: ");
                 productQuantityInput = Console.ReadLine();
                 Console.WriteLine("");
@@ -597,11 +598,48 @@ namespace MarketManagmentSystem
 
             Console.WriteLine("");
             Console.WriteLine("-------------- Yeni Satış əlavə edildi --------------");
-        }
+        }                                                    //Exception
 
         static void ShowRemoveProductBySaleItem()
         {
+            Console.WriteLine("");
+            Console.WriteLine("-------------- Satışdan məhsulu geri qaytarmaq --------------");
 
+            #region Sale Number
+            Console.WriteLine("");
+            Console.WriteLine("Satışın nömrəsini daxil edin: ");
+            string saleNumberInput = Console.ReadLine();
+            int saleNumber;
+
+            while(!int.TryParse(saleNumberInput,out saleNumber))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz!: ");
+                saleNumberInput = Console.ReadLine();
+            }
+            #endregion
+
+            #region Product Code
+            Console.WriteLine("");
+            Console.WriteLine("Məhsulun kodunu daxil edin: ");
+            string productCode = Console.ReadLine();
+            #endregion
+
+            #region Product Quantity
+            Console.WriteLine("");
+            Console.WriteLine("Məhsulun sayını daxil edin: ");
+            string productQuantityInput = Console.ReadLine();
+            int productQuantity;
+
+            while(!int.TryParse(productQuantityInput,out productQuantity))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("Rəqəm daxil etməlisiniz: ");
+                productQuantityInput = Console.ReadLine();
+            }
+            #endregion
+
+            _marketableService.RemoveProductBySaleItem(saleNumber, productCode, productQuantity);
         }
 
         static void ShowSaleList()
