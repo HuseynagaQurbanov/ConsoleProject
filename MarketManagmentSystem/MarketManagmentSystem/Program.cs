@@ -349,107 +349,118 @@ namespace MarketManagmentSystem
      
             Console.WriteLine("");
             Console.WriteLine("-------------- Məhsul üzərində düzəliş etmək --------------");
+            Console.WriteLine("");
             Console.Write("Məhsulun kodunu daxil edin: ");
             string code = Console.ReadLine();
 
             List<Product> productCode = _marketableService.EditProduct(code);
 
-            #region Product Name Change
-            Console.WriteLine("");
-            Console.Write("Məhsulun yeni adını daxil edin: ");
-            string productName = Console.ReadLine();
-            #endregion
-
-            #region Product Quantity Change
-            Console.WriteLine("");
-            Console.Write("Məhsulun yeni sayını daxil edin: ");
-            string productQuantityInput = Console.ReadLine();
-            int productQuantity;
-            while(!int.TryParse(productQuantityInput, out productQuantity))
+            if(productCode.Count == 0)
             {
                 Console.WriteLine("");
-                Console.Write("Rəqəm daxil etməlisiniz!: ");
-                productQuantityInput = Console.ReadLine();
+                Console.WriteLine("Bu koda görə məhsul tapılmadı!");
             }
-            #endregion
-
-            #region Product Price Change
-            Console.WriteLine("");
-            Console.Write("Məhsulun yeni məbləğini daxil edin: ");
-            string productPriceInput = Console.ReadLine();
-            double productPrice;
-
-            while(!double.TryParse(productPriceInput,out productPrice))
+            else
             {
+                #region Product Name Change
                 Console.WriteLine("");
-                Console.Write("Rəqəm daxil etməlisiniz!: ");
-                productPriceInput = Console.ReadLine();
-            }
-            #endregion
-
-            #region Category Change Menu
-            Console.WriteLine("");
-            int selectInt;
-            do
-            {
-                #region Product Category Menu 
-                Console.WriteLine("Məhsulun yeni kateqoriyasını daxil edin: ");
-                Console.WriteLine("0. Televizorlar");
-                Console.WriteLine("1. Telefonlar");
-                Console.WriteLine("2. Soyuducular");
-                Console.WriteLine("3. Kompyuterlər");
+                Console.Write("Məhsulun yeni adını daxil edin: ");
+                string productName = Console.ReadLine();
                 #endregion
 
-                #region Product Category Selection
+                #region Product Quantity Change
                 Console.WriteLine("");
-                Console.Write("Seçiminizi edin: ");
-                string select = Console.ReadLine();
-
-                while (!int.TryParse(select, out selectInt))
+                Console.Write("Məhsulun yeni sayını daxil edin: ");
+                string productQuantityInput = Console.ReadLine();
+                int productQuantity;
+                while (!int.TryParse(productQuantityInput, out productQuantity))
                 {
                     Console.WriteLine("");
                     Console.Write("Rəqəm daxil etməlisiniz!: ");
-                    select = Console.ReadLine();
+                    productQuantityInput = Console.ReadLine();
                 }
                 #endregion
 
-                #region Product Category Switch
-                switch (selectInt)
+                #region Product Price Change
+                Console.WriteLine("");
+                Console.Write("Məhsulun yeni məbləğini daxil edin: ");
+                string productPriceInput = Console.ReadLine();
+                double productPrice;
+
+                while (!double.TryParse(productPriceInput, out productPrice))
                 {
-                    case 0:
-                        product.ProductCategory = ProductCategoryType.TV;
-                        break;
-                    case 1:
-                        product.ProductCategory = ProductCategoryType.Phone;
-                        break;
-                    case 2:
-                        product.ProductCategory = ProductCategoryType.Refrigerator;
-                        break;
-                    case 3:
-                        product.ProductCategory = ProductCategoryType.Computer;
-                        break;
-                    default:
-                        Console.WriteLine("--------------------------------");
-                        Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
-                        ShowEditProduct();
-                        Console.WriteLine("--------------------------------");
-                        break;
+                    Console.WriteLine("");
+                    Console.Write("Rəqəm daxil etməlisiniz!: ");
+                    productPriceInput = Console.ReadLine();
                 }
                 #endregion
 
-            } while (selectInt ==-1);
+                #region Category Change Menu
+                Console.WriteLine("");
+                int selectInt;
+                do
+                {
+                    #region Product Category Menu 
+                    Console.WriteLine("Məhsulun yeni kateqoriyasını daxil edin: ");
+                    Console.WriteLine("0. Televizorlar");
+                    Console.WriteLine("1. Telefonlar");
+                    Console.WriteLine("2. Soyuducular");
+                    Console.WriteLine("3. Kompyuterlər");
+                    #endregion
 
-            #endregion
+                    #region Product Category Selection
+                    Console.WriteLine("");
+                    Console.Write("Seçiminizi edin: ");
+                    string select = Console.ReadLine();
+
+                    while (!int.TryParse(select, out selectInt))
+                    {
+                        Console.WriteLine("");
+                        Console.Write("Rəqəm daxil etməlisiniz!: ");
+                        select = Console.ReadLine();
+                    }
+                    #endregion
+
+                    #region Product Category Switch
+                    switch (selectInt)
+                    {
+                        case 0:
+                            product.ProductCategory = ProductCategoryType.TV;
+                            break;
+                        case 1:
+                            product.ProductCategory = ProductCategoryType.Phone;
+                            break;
+                        case 2:
+                            product.ProductCategory = ProductCategoryType.Refrigerator;
+                            break;
+                        case 3:
+                            product.ProductCategory = ProductCategoryType.Computer;
+                            break;
+                        default:
+                            Console.WriteLine("--------------------------------");
+                            Console.WriteLine("Siz yalnış seçim etdiniz,1-4 aralığında seçim etməlisiniz");
+                            ShowEditProduct();
+                            Console.WriteLine("--------------------------------");
+                            break;
+                    }
+                    #endregion
+
+                } while (selectInt == -1);
+
+                #endregion
 
 
-            foreach (var item in productCode)
-            {
-                item.ProductName = productName;
-                item.ProductQuantity = productQuantity;
-                item.ProductPrice = productPrice;
-                item.ProductCategory = (ProductCategoryType)selectInt;
-                    
+                foreach (var item in productCode)
+                {
+                    item.ProductName = productName;
+                    item.ProductQuantity = productQuantity;
+                    item.ProductPrice = productPrice;
+                    item.ProductCategory = (ProductCategoryType)selectInt;
+
+                }
             }
+
+            
         }                                    
 
         static void ShowRemoveProduct()
@@ -567,7 +578,7 @@ namespace MarketManagmentSystem
                 if(result != null)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " +item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti" + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         //exception
+                    Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " +item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti: " + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         //exception
                 }
             }
         }                       //Exception vermeliyem
@@ -586,7 +597,7 @@ namespace MarketManagmentSystem
                 if (products != null)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine(item.ProductCategory + " " + item.ProductName + " " + item.ProductQuantity + " " + item.ProductPrice + " " + item.ProductCode);         //exception
+                    Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " + item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti: " + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         //exception
                 }
             }
         }                       //Exception vermeliyem

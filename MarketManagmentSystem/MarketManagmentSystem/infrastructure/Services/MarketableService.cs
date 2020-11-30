@@ -131,7 +131,7 @@ namespace MarketManagmentSystem.infrastructure.Services
 
             foreach (var item in list)
             {
-                Console.WriteLine("{0},{1},{2}",item.ProductCode,item.ProductName,item.ProductPrice);
+                Console.WriteLine("{0},{1},{2}", "Məhsulun kodu: "  + item.ProductCode, "\n" + "Məhsulun adı: " + item.ProductName, "\n" + "Məhsulun qiyməyi: " + item.ProductPrice);
             }
         }
 
