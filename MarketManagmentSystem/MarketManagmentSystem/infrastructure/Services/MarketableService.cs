@@ -19,7 +19,6 @@ namespace MarketManagmentSystem.infrastructure.Services
         private readonly List<Product> _products;
         public List<Product> Products => _products;
 
-        #region Defaults
         public MarketableService()
         {
             _sales = new List<Sale>();
@@ -27,87 +26,86 @@ namespace MarketManagmentSystem.infrastructure.Services
             _products = new List<Product>();
 
             #region Default Product
-            _products.Add(new Product
-            {
-                ProductCategory = ProductCategoryType.Refrigerator,
-                ProductName = "Indesit TIAA 16 (UA)",
-                ProductPrice = 25,
-                ProductQuantity = 10,
-                ProductCode = "AAA"
-            });
+            //_products.Add(new Product
+            //{
+            //    ProductCategory = ProductCategoryType.Refrigerator,
+            //    ProductName = "Indesit TIAA 16 (UA)",
+            //    ProductPrice = 25,
+            //    ProductQuantity = 10,
+            //    ProductCode = "AAA"
+            //});
 
-            _products.Add(new Product
-            {
-                ProductCategory = ProductCategoryType.Phone,
-                ProductName = "Telefon iPhone 12 Mini 64GB Blue",
-                ProductPrice = 40,
-                ProductQuantity = 5,
-                ProductCode = "BBB"
-            });
+            //_products.Add(new Product
+            //{
+            //    ProductCategory = ProductCategoryType.Phone,
+            //    ProductName = "Telefon iPhone 12 Mini 64GB Blue",
+            //    ProductPrice = 40,
+            //    ProductQuantity = 5,
+            //    ProductCode = "BBB"
+            //});
 
-            _products.Add(new Product
-            {
-                ProductCategory = ProductCategoryType.Refrigerator,
-                ProductName = "Gorenje NRK6192KW",
-                ProductPrice = 10,
-                ProductQuantity = 7,
-                ProductCode = "CCC"
-            });
+            //_products.Add(new Product
+            //{
+            //    ProductCategory = ProductCategoryType.Refrigerator,
+            //    ProductName = "Gorenje NRK6192KW",
+            //    ProductPrice = 10,
+            //    ProductQuantity = 7,
+            //    ProductCode = "CCC"
+            //});
             #endregion
 
             #region Default SaleItem
-            _saleItems.Add(new SaleItem
-            {
-                SaleItemNumber = 1,
-                SaleCount = 1,
-                SaleProduct = _products.Find(p => p.ProductCode == "AAA")
+            //_saleItems.Add(new SaleItem
+            //{
+            //    SaleItemNumber = 1,
+            //    SaleCount = 1,
+            //    SaleProduct = _products.Find(p => p.ProductCode == "AAA")
 
-            });
+            //});
 
-            _saleItems.Add(new SaleItem
-            {
-                SaleItemNumber = 2,
-                SaleCount = 2,
-                SaleProduct = _products.Find(p => p.ProductCode == "BBB")
+            //_saleItems.Add(new SaleItem
+            //{
+            //    SaleItemNumber = 2,
+            //    SaleCount = 2,
+            //    SaleProduct = _products.Find(p => p.ProductCode == "BBB")
 
-            });
+            //});
 
-            _saleItems.Add(new SaleItem
-            {
-                SaleItemNumber = 3,
-                SaleCount = 3,
-                SaleProduct = _products.Find(p => p.ProductCode == "CCC")
+            //_saleItems.Add(new SaleItem
+            //{
+            //    SaleItemNumber = 3,
+            //    SaleCount = 3,
+            //    SaleProduct = _products.Find(p => p.ProductCode == "CCC")
 
-            });
+            //});
             #endregion
 
             #region Default Sale
-            _sales.Add(new Sale
-            {
-                SaleNumber = 1,
-                SaleAmount = 25,
-                SaleDate = new DateTime(2020, 5, 16),
-                SaleItem = _saleItems.FindAll(si=>si.SaleCount==1)
-            });
+            //_sales.Add(new Sale
+            //{
+            //    SaleNumber = 1,
+            //    SaleAmount = 25,
+            //    SaleDate = new DateTime(2020, 5, 16),
+            //    SaleItem = _saleItems.FindAll(si => si.SaleCount == 1)
+            //});
 
-            _sales.Add(new Sale
-            {
-                SaleNumber = 2,
-                SaleAmount = 80,
-                SaleDate = new DateTime(2020, 8, 19),
-                SaleItem = _saleItems.FindAll(si => si.SaleCount == 2)
-            });
+            //_sales.Add(new Sale
+            //{
+            //    SaleNumber = 2,
+            //    SaleAmount = 80,
+            //    SaleDate = new DateTime(2020, 8, 19),
+            //    SaleItem = _saleItems.FindAll(si => si.SaleCount == 2)
+            //});
 
-            _sales.Add(new Sale
-            {
-                SaleNumber = 3,
-                SaleAmount = 30,
-                SaleDate = new DateTime(2020, 11, 27),
-                SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
-            });
+            //_sales.Add(new Sale
+            //{
+            //    SaleNumber = 3,
+            //    SaleAmount = 30,
+            //    SaleDate = new DateTime(2020, 11, 27),
+            //    SaleItem = _saleItems.FindAll(si => si.SaleCount == 3)
+            //});
             #endregion
         }
-        #endregion
 
         #region Product Methods
         public void AddProduct(Product product)
@@ -118,10 +116,6 @@ namespace MarketManagmentSystem.infrastructure.Services
         public List<Product> EditProduct(string productCode)
         {
             return _products.FindAll(p => p.ProductCode == productCode).ToList();
-
-            Console.WriteLine("");
-            Console.WriteLine("-------------- Məhsul üzərində düzəliş olundu --------------");
-            Console.WriteLine("");
         }
 
         public List<Product> GetProductsByAmountRange(double startAmount, double endAmount)
@@ -136,12 +130,13 @@ namespace MarketManagmentSystem.infrastructure.Services
             if(list.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu kateqoriyada məhsul yoxdur!");
+                Console.WriteLine("-------------- Bu kateqoriyaya aid məhsul yoxdur! --------------");
             }
             else
             {
                 foreach (var item in list)
                 {
+                    Console.WriteLine("----------------------------");
                     Console.WriteLine("{0},{1},{2}", "Məhsulun kodu: " + item.ProductCode, "\n" + "Məhsulun adı: " + item.ProductName, "\n" + "Məhsulun qiyməyi: " + item.ProductPrice);
                 }
             }
@@ -161,7 +156,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             if (check == false)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu koda görə məhsul tapılmadı!");
+                Console.WriteLine("-------------- Bu koda görə məhsul tapılmadı! --------------");
             }
             else
             {
@@ -186,6 +181,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             var Code = productCode;
 
             bool check = _products.Exists(p => p.ProductCode == productCode);
+
             if (check == false)
             {
                 Console.WriteLine("");
@@ -194,11 +190,11 @@ namespace MarketManagmentSystem.infrastructure.Services
             else
             {
                 saleItem.SaleCount = productQuantity;
+
                 if (product.ProductQuantity < productQuantity)
                 {
                     Console.WriteLine("");
                     Console.WriteLine("-------------- Daxil etdiyiniz miqdarda məhsul yoxdur --------------");
-                    Console.WriteLine("");
                 }
                 else
                 {
@@ -220,7 +216,6 @@ namespace MarketManagmentSystem.infrastructure.Services
 
                     Console.WriteLine("");
                     Console.WriteLine("-------------- Yeni Satış əlavə edildi --------------");
-                    Console.WriteLine("");
                 }
             }
         }
@@ -252,7 +247,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             if(check == false)
             {
                 Console.WriteLine("");
-                Console.WriteLine("{0} nömrəli satış yoxdur!",saleNumber);
+                Console.WriteLine("-------------- {0} nömrəli satış yoxdur! --------------", saleNumber);
             }
             else
             {
@@ -277,7 +272,7 @@ namespace MarketManagmentSystem.infrastructure.Services
             if(checkSaleNumber == false)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu nömrədə satış yoxdur!");
+                Console.WriteLine("-------------- Bu nömrədə satış yoxdur! --------------");
             }
             else
             {
@@ -288,7 +283,7 @@ namespace MarketManagmentSystem.infrastructure.Services
                 if(checkProductCode == false)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Bu koda aid məhsul tapılmadı!");
+                    Console.WriteLine("-------------- Bu koda aid məhsul tapılmadı! --------------");
                 }
                 else
                 {
@@ -301,11 +296,17 @@ namespace MarketManagmentSystem.infrastructure.Services
                     else if ((sale.SaleAmount == list.ProductPrice * productQuantity))
                     {
                         _sales.Remove(sale);
+
+                        Console.WriteLine("");
+                        Console.WriteLine("-------------- Satışdan məhsul geri qaytarıldı --------------");
                     }
                     else
                     {
                         Console.WriteLine("");
+                        Console.WriteLine("------------------------------------------");
                         Console.WriteLine("Kodu {0} olan məhsuldan {1} sayda satılmayıb!\n\nDüzgün say daxil edin!",productCode, productQuantity);
+                        Console.WriteLine("------------------------------------------");
+                        Console.WriteLine("");
                     }
                 }
             }

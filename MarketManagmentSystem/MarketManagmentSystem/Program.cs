@@ -292,8 +292,6 @@ namespace MarketManagmentSystem
                 }
 
                 product.ProductPrice = productPrice;
-
-
                 #endregion
 
                 #region Product Quantity
@@ -306,7 +304,7 @@ namespace MarketManagmentSystem
                 while (!int.TryParse(productQuantityInput, out productQuantity))
                 {
                     Console.WriteLine("");
-                    Console.Write("Rəqəm daxil etməlisiniz!: ");
+                    Console.Write("Tam rəqəm daxil etməlisiniz!: ");
                     productQuantityInput = Console.ReadLine();
                 }
 
@@ -320,13 +318,23 @@ namespace MarketManagmentSystem
                 product.ProductCode = Console.ReadLine();
                 #endregion
 
-                if (product != null)
-                {
-                    _marketableService.AddProduct(product);
-                }
+                var selectProductCode = _marketableService.Products.Select(m => m.ProductCode).FirstOrDefault();
 
-                Console.WriteLine("");
-                Console.WriteLine("-------------- Yeni məhsul əlavə edildi --------------");
+                if(selectProductCode == product.ProductCode)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("-------------- {0} - koduna aid məhsul mövcuddur, əlavə edə bilməzsiniz!!! --------------", product.ProductCode);
+                }
+                else
+                {
+                    if (product != null)
+                    {
+                        _marketableService.AddProduct(product);
+                    }
+
+                    Console.WriteLine("");
+                    Console.WriteLine("-------------- Yeni məhsul əlavə edildi --------------");
+                }
             }
         }    
 
@@ -361,7 +369,7 @@ namespace MarketManagmentSystem
             if(productCode.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu koda görə məhsul tapılmadı!");
+                Console.WriteLine("-------------- Bu koda görə məhsul tapılmadı! --------------");
             }
             else
             {
@@ -460,6 +468,9 @@ namespace MarketManagmentSystem
                     item.ProductCategory = (ProductCategoryType)selectInt;
 
                 }
+
+                Console.WriteLine("");
+                Console.WriteLine("-------------- Məhsul üzərində düzəliş olundu --------------");
             }
         }           
 
@@ -498,7 +509,6 @@ namespace MarketManagmentSystem
                 Console.WriteLine("");
                 Console.Write("Seçiminizi edin: ");
                 string select = Console.ReadLine();
-                Console.WriteLine("");
 
                 while (!int.TryParse(select, out selectInt))
                 {
@@ -526,8 +536,8 @@ namespace MarketManagmentSystem
                     default:
                         Console.WriteLine("--------------------------------");
                         Console.WriteLine("Siz yalnış seçim etdiniz,0-3 aralığında seçim etməlisiniz");
-                        ShowGetProductsByCategoryName();
                         Console.WriteLine("--------------------------------");
+                        ShowGetProductsByCategoryName();
                         break;
                 }
                 #endregion
@@ -576,14 +586,14 @@ namespace MarketManagmentSystem
             if(startAmount > endAmount)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Başlanğıc qiymət bitiş qiymətindən kiçik olmalıdır!!!");
+                Console.WriteLine("-------------- Başlanğıc qiymət bitiş qiymətindən kiçik olmalıdır!!! --------------");
             }
             else
             {
                 if (result.Count == 0)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Bu aralıqda məhsul yoxdur!");
+                    Console.WriteLine("-------------- Bu aralıqda məhsul yoxdur! --------------");
                 }
                 else
                 {
@@ -591,8 +601,8 @@ namespace MarketManagmentSystem
                     {
                         if (result != null)
                         {
-                            Console.WriteLine("");
-                            Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " + item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti: " + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         //exception
+                            Console.WriteLine("----------------------------");
+                            Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " + item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti: " + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         
                         }
                     }
                 }
@@ -612,7 +622,7 @@ namespace MarketManagmentSystem
             if(products.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu adda məhsul mövcud deyil!");
+                Console.WriteLine("-------------- Bu ada malik məhsul mövcud deyil! --------------");
             }
             else
             {
@@ -620,7 +630,7 @@ namespace MarketManagmentSystem
                 {
                     if (products != null)
                     {
-                        Console.WriteLine("");
+                        Console.WriteLine("----------------------------");
                         Console.WriteLine("Kateqoriya: " + item.ProductCategory + "\n" + "Məhsul adı: " + item.ProductName + "\n" + "Məhsul sayı: " + item.ProductQuantity + "\n" + "Məhsul qiyməti: " + item.ProductPrice + "\n" + "Məhsul kodu: " + item.ProductCode);         
                     }
                 }
@@ -770,8 +780,7 @@ namespace MarketManagmentSystem
 
             while (!DateTime.TryParse(endDateInput, out endDate))
             {
-                Console.WriteLine("Tarix daxil etməlisiniz!: ");
-                Console.WriteLine("");
+                Console.Write("Tarix daxil etməlisiniz!: ");
                 endDateInput = Console.ReadLine();
             }
             #endregion
@@ -780,15 +789,13 @@ namespace MarketManagmentSystem
 
             if(startDate > endDate)
             {
-                Console.WriteLine("");
-                Console.WriteLine("Başlanğıc tarixi bitiş tarixindən kiçik olmalıdır!");
+                Console.WriteLine("-------------- Başlanğıc tarixi bitiş tarixindən kiçik olmalıdır! --------------");
             }
             else
             {
                 if(result.Count == 0)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("{0} - {1} tarix aralığında satış yoxdur!",startDate.ToString("dd.MM.yyyy"),endDate.ToString("dd.MM.yyyy"));
+                    Console.WriteLine("-------------- {0} - {1} tarix aralığında satış yoxdur! --------------", startDate.ToString("dd.MM.yyyy"),endDate.ToString("dd.MM.yyyy"));
                 }
             }
 
@@ -798,10 +805,12 @@ namespace MarketManagmentSystem
             {
                 if (result.Count != 0)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));         
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
                 }
             }
+
+            
         }                                 
 
         static void ShowGetSalesByAmountRange()
@@ -844,15 +853,13 @@ namespace MarketManagmentSystem
 
             if (startAmount > endAmount)
             {
-                Console.WriteLine("");
-                Console.WriteLine("Başlanğıc qiymət bitiş qiymətindən kiçik olmalıdır!!!");
+                Console.WriteLine("-------------- Başlanğıc qiymət bitiş qiymətindən kiçik olmalıdır!!! --------------");
             }
             else
             {
                 if (result.Count == 0)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Bu aralıqda satış yoxdur!");
+                    Console.WriteLine("-------------- Bu aralıqda satış yoxdur! --------------");
                 }
                 else
                 {
@@ -862,7 +869,7 @@ namespace MarketManagmentSystem
                     {
                         if (result.Count != 0)
                         {
-                            Console.WriteLine("");
+                            Console.WriteLine("----------------------------");
                             Console.WriteLine("Satışın Nömrəsi: " + item.SaleNumber + "\n" + "Satışın Qiyməti: " + item.SaleAmount.ToString("#.##") + "\n" + "Məhsulun Sayı: " + count + "\n" + "Tarixi:" + item.SaleDate.ToString("dd.MM.yyyy"));
                         }
                     }
@@ -893,9 +900,7 @@ namespace MarketManagmentSystem
             if(sales.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("==================================");
-                Console.WriteLine("Bu tarixdə satış yoxdur");
-                Console.WriteLine("==================================");
+                Console.WriteLine("-------------- Bu tarixdə satış yoxdur --------------");
             }
             else
             {
@@ -932,7 +937,7 @@ namespace MarketManagmentSystem
             if(sales.Count == 0)
             {
                 Console.WriteLine("");
-                Console.WriteLine("Bu nömrədə satış yoxdur!");
+                Console.WriteLine("-------------- Bu nömrədə satış yoxdur! --------------");
             }
             else
             {
