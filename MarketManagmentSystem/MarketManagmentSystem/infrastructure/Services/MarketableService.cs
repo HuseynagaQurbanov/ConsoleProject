@@ -108,21 +108,41 @@ namespace MarketManagmentSystem.infrastructure.Services
         }
 
         #region Product Methods
+
+        #region Add Product
+        //
+        // Summary:
+        //     Yeni məhsul əlavə etmək.
         public void AddProduct(Product product)
         {
             _products.Add(product);
         }
+        #endregion
 
+        #region Edit Product
+        //
+        // Summary:
+        //     Məhsul üzərində düzəliş etmək
         public List<Product> EditProduct(string productCode)
         {
             return _products.FindAll(p => p.ProductCode == productCode).ToList();
         }
+        #endregion
 
+        #region Get Products By Amount Range
+        //
+        // Summary:
+        //     Qiymət aralığına görə məhsulların göstərilməsi.
         public List<Product> GetProductsByAmountRange(double startAmount, double endAmount)
         {
             return _products.Where(p => p.ProductPrice >= startAmount && p.ProductPrice <= endAmount).ToList();
         }
+        #endregion
 
+        #region Get Products By Category Name
+        //
+        // Summary:
+        //     Kateqoriyasına görə məhsulların göstərilməsi.
         public void GetProductsByCategoryName(ProductCategoryType productCategory)
         {
             List<Product> list = _products.FindAll(p => p.ProductCategory == productCategory).ToList();
@@ -141,12 +161,22 @@ namespace MarketManagmentSystem.infrastructure.Services
                 }
             }
         }
+        #endregion
 
+        #region Get Products By Product Name
+        //
+        // Summary:
+        //     Adına görə məhsulun göstərilməsi.
         public List<Product> GetProductsByProductName(string productName)
         {
             return _products.FindAll(p => p.ProductName == productName);
         }
+        #endregion
 
+        #region Remove Product
+        //
+        // Summary:
+        //     Məhsulu silmək.
         public void RemoveProduct(string productCode)
         {
             var resultlist = _products.ToList();
@@ -170,7 +200,14 @@ namespace MarketManagmentSystem.infrastructure.Services
         }
         #endregion
 
+        #endregion
+
         #region Sale Methods
+
+        #region Add Sale
+        //
+        // Summary:
+        //     Yeni satış əlavə etmək.
         public void AddSale(string productCode, int productQuantity)
         {
             List<SaleItem> saleItems = new List<SaleItem>();
@@ -219,27 +256,52 @@ namespace MarketManagmentSystem.infrastructure.Services
                 }
             }
         }
+        #endregion
 
+        #region Get Sale By Date
+        //
+        // Summary:
+        //     Tarixə görə satışın göstərilməsi.
         public List<Sale> GetSaleByDate(DateTime date)
         {
             return _sales.Where(s => s.SaleDate == date).ToList();
         }
+        #endregion
 
+        #region Get Sale By Sale Number
+        //
+        // Summary:
+        //     Satışın nömrəsinə görə satışın göstərilməsi.
         public List<Sale> GetSaleBySaleNumber(double saleNumber)
         {
             return _sales.Where(s => s.SaleNumber == saleNumber).ToList();
         }
+        #endregion
 
+        #region Get Sales By Amount Range
+        //
+        // Summary:
+        //     Qiymət aralığına görə satışların göstərilməsi.
         public List<Sale> GetSalesByAmountRange(double startAmount, double endAmount)
         {
             return _sales.Where(s => s.SaleAmount >= startAmount && s.SaleAmount <= endAmount).ToList();
         }
+        #endregion
 
+        #region Get Sales By Date Range
+        //
+        // Summary:
+        //     Tarix aralığına görə satışların göstərilməsi.
         public List<Sale> GetSalesByDateRange(DateTime startDate, DateTime endDate)
         {
             return _sales.Where(s => s.SaleDate >= startDate && s.SaleDate <= endDate).ToList();
         }
+        #endregion
 
+        #region Remove Sale
+        //
+        // Summary:
+        //     Satışı silmək.
         public void RemoveSale(int saleNumber)
         {
             bool check = _sales.Exists(s => s.SaleNumber == saleNumber);
@@ -259,7 +321,12 @@ namespace MarketManagmentSystem.infrastructure.Services
                 Console.WriteLine("-------------- Satış silindi --------------");
             }
         }
+        #endregion
 
+        #region Remove Product By SaleItem
+        //
+        // Summary:
+        //     Nömrəyə görə satışları görmək.
         public double RemoveProductBySaleItem(int saleNumber, string productCode, int productQuantity)
         {
             double amount = 0;
@@ -313,11 +380,18 @@ namespace MarketManagmentSystem.infrastructure.Services
 
             return amount;
         }
+        #endregion
 
+        #region Show Sale Item
+        //
+        // Summary:
+        //     Satış item göstərən metod
         public List<SaleItem> ShowSaleItem(int saleNumber)
         {
             return _sales.Find(s => s.SaleNumber == saleNumber).SaleItem.ToList();
         }
+        #endregion
+
         #endregion
     }
 }

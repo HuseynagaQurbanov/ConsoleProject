@@ -613,9 +613,11 @@ namespace MarketManagmentSystem
         {
             Console.WriteLine("-------------- Adına görə məhsulun göstərilməsi --------------");
 
+            #region Product Name
             Console.WriteLine("");
             Console.Write("Məhsulun adını daxil edin: ");
             string productName = Console.ReadLine();
+            #endregion
 
             List<Product> products = _marketableService.GetProductsByProductName(productName);
 
@@ -646,10 +648,13 @@ namespace MarketManagmentSystem
             Console.WriteLine("");
             Console.WriteLine("-------------- Yeni Satış əlavə et --------------");
 
+            #region Product Code
             Console.WriteLine("");
             Console.Write("Məhsulun kodunu daxil edin: ");
             string productCode = Console.ReadLine();
+            #endregion
 
+            #region Product Quantity
             Console.WriteLine("");
             Console.Write("Miqdarını daxil edin: ");
             string productQuantityInput = Console.ReadLine();
@@ -662,6 +667,7 @@ namespace MarketManagmentSystem
                 productQuantityInput = Console.ReadLine();
                 Console.WriteLine("");
             }
+            #endregion
 
             _marketableService.AddSale(productCode, productQuantity);
         }            
@@ -734,6 +740,7 @@ namespace MarketManagmentSystem
             Console.WriteLine("");
             Console.WriteLine("-------------- Satışı silmək --------------");
 
+            #region Sale Number
             Console.WriteLine("");
             Console.Write("Silmək istədiyiniz satışın nömrəsini daxil edin: ");                         
 
@@ -746,6 +753,7 @@ namespace MarketManagmentSystem
                 Console.WriteLine("Rəqəm daxil etməlisiniz!");
                 codeInput = Console.ReadLine();
             }
+            #endregion
 
             _marketableService.RemoveSale(code);
         }         
@@ -882,9 +890,10 @@ namespace MarketManagmentSystem
             Console.WriteLine("");
             Console.WriteLine("-------------- Tarixə görə satışları görmək --------------");
 
+            #region Sale Date
             Console.WriteLine("");
             Console.Write("Görmək istədiyiniz satışın tarixini daxil edin (Gün.Ay.İl): ");
-
+            
             string dateInput = Console.ReadLine();
             DateTime date;
 
@@ -894,6 +903,7 @@ namespace MarketManagmentSystem
                 Console.Write("Tarix daxil etməlisiniz!: ");
                 dateInput = Console.ReadLine();
             }
+            #endregion
 
             List<Sale> sales = _marketableService.GetSaleByDate(date);
 
@@ -919,6 +929,7 @@ namespace MarketManagmentSystem
             Console.WriteLine("");
             Console.WriteLine("-------------- Satışın nömrəsinə görə satışları görmək --------------");
 
+            #region Sale Number
             Console.WriteLine("");
             Console.Write("Görmək istədiyiniz satışın nömrəsini daxil edin: ");
 
@@ -931,6 +942,7 @@ namespace MarketManagmentSystem
                 Console.Write("Rəqəm daxil etməlisiniz!: ");
                 saleNumberInput = Console.ReadLine();
             }
+            #endregion
 
             List<Sale> sales = _marketableService.GetSaleBySaleNumber(saleNumber);
 
